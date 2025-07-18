@@ -29,7 +29,7 @@ export const rings = {
 import reactLogoUrl from './assets/reactlogo.png';
 import jeuxvideoUrl from './assets/jeuxvideo.png';
 import FootballUrl from './assets/foot.png';
-import PianoUrl from './assets/Piano.png';
+import PianoUrl from './assets/piano.png';
 
 export const moons: Moon[] = [
   {
