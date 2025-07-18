@@ -1,6 +1,5 @@
 import { Canvas, useThree } from '@react-three/fiber';
 import { Suspense, useState, useRef, useCallback, useEffect } from 'react';
-import * as THREE from 'three';
 import { CentralComputer } from '../components/CentralComputer';
 import { OrbitRings } from '../components/OrbitRings';
 import { ZoomControls } from '../components/ZoomControls';

@@ -13,11 +13,11 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
   const [mounted, setMounted] = useState(false);
   const [showParticles, setShowParticles] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<number>();
+  const scrollTimeoutRef = useRef<number | undefined>(undefined);
 
   // Mémoriser les positions des particules pour éviter les recalculs
   const particlePositions = useMemo(() => 
-    Array.from({ length: 8 }, (_, i) => ({ // Réduit de 20 à 8 particules
+    Array.from({ length: 8 }, () => ({ // Réduit de 20 à 8 particules
       x: Math.random() * 384,
       y: Math.random() * 128,
       delay: Math.random() * 2

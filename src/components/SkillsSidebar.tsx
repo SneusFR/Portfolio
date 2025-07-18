@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { 
   Code2,
-  Palette,
   Database,
   Globe,
-  Gamepad2,
-  Music,
-  Wrench
+  Music
 } from 'lucide-react';
-import { moons, rings } from '../data';
+import { moons } from '../data';
 
 interface SkillsSidebarProps {
   isDarkMode?: boolean;
