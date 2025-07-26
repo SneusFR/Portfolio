@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import { StarryBackground } from './components/StarryBackground';
 import { Home } from './pages/Home';
 import { Skills } from './pages/Skills';
+import { Projects } from './pages/Projects';
 
 // Composant pour gérer les classes du body selon la route
 function BodyClassManager() {
@@ -56,6 +58,9 @@ function App() {
         {/* Gestionnaire des classes du body */}
         <BodyClassManager />
         
+        {/* Fond étoilé global */}
+        <StarryBackground isDarkMode={isDarkMode} />
+        
         {/* Navbar */}
         <Navbar 
           isDarkMode={isDarkMode} 
@@ -67,6 +72,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
           <Route path="/skills" element={<Skills isDarkMode={isDarkMode} onDialogStateChange={setIsDialogOpen} />} />
+          <Route path="/projects" element={<Projects isDarkMode={isDarkMode} />} />
         </Routes>
       </div>
     </Router>

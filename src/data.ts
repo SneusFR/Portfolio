@@ -30,6 +30,34 @@ import reactLogoUrl from './assets/reactlogo.png';
 import jeuxvideoUrl from './assets/jeuxvideo.png';
 import FootballUrl from './assets/foot.png';
 import PianoUrl from './assets/piano.png';
+import nextUrl from './assets/next.png';
+import angularUrl from './assets/angular.png';
+import svelteUrl from './assets/svelte.png';
+import vuejsUrl from './assets/vuejs.png';
+import tailwindUrl from './assets/tailwind.png';
+import javaUrl from './assets/javalogo.png';
+import pythonUrl from './assets/python.png';
+import cUrl from './assets/csharp.png';
+import rustUrl from './assets/rust.png';
+import phpUrl from './assets/php.png';
+import gologoUrl from './assets/gologo2.png';
+import postgresqlUrl from './assets/postegres.png';
+import redisUrl from './assets/redis.png';
+import sqliteUrl from './assets/sqllite.png';
+import mysqlUrl from './assets/mysql.png';
+import mssqlUrl from './assets/msql.png';
+import mongodbUrl from './assets/mongodb.png';
+
+
+
+
+
+
+
+
+
+
+
 
 export const moons: Moon[] = [
   {
@@ -134,7 +162,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Express.js", "API REST", "GraphQL", "Microservices", "WebSockets", "Authentication"],
     experience: "4 ans",
-    icon: reactLogoUrl
+    icon: javaUrl
   },
   {
     id: "design",
@@ -212,7 +240,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Vue 3", "Composition API", "Vuex", "Vue Router", "Nuxt.js", "Quasar"],
     experience: "3 ans",
-    icon: reactLogoUrl
+    icon: vuejsUrl
   },
   {
     id: "angular",
@@ -238,7 +266,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Angular", "TypeScript", "RxJS", "NgRx", "Angular Material", "PrimeNG"],
     experience: "2 ans",
-    icon: reactLogoUrl
+    icon: angularUrl
   },
   {
     id: "svelte",
@@ -264,7 +292,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Svelte", "SvelteKit", "Stores", "Actions", "Transitions", "Vite"],
     experience: "1 an",
-    icon: reactLogoUrl
+    icon: svelteUrl
   },
   {
     id: "nextjs",
@@ -289,8 +317,8 @@ export const moons: Moon[] = [
       }
     ],
     skills: ["Next.js", "SSR", "SSG", "API Routes", "NextAuth", "Vercel", "Prisma"],
-    experience: "3 ans",
-    icon: reactLogoUrl
+    experience: "1 an",
+    icon: nextUrl
   },
   {
     id: "tailwind",
@@ -315,32 +343,41 @@ export const moons: Moon[] = [
       }
     ],
     skills: ["Tailwind CSS", "Responsive Design", "Custom Plugins", "JIT Mode", "PostCSS", "Headless UI"],
-    experience: "2 ans",
-    icon: reactLogoUrl
+    experience: "1 an",
+    icon: tailwindUrl
   },
   {
-    id: "sass",
-    label: "Sass/SCSS",
+    id: "react",
+    label: "React",
     ring: "frontend",
     angle0: (5 * Math.PI) / 3,
     color: "#ec4899",
-    description: "Préprocesseur CSS avec variables, mixins et fonctions avancées.",
-    projects: ["Thème WordPress", "Framework CSS", "App Styling"],
+    description: "Bibliothèque JavaScript pour construire des interfaces utilisateur réactives et modulaires.",
+    projects: ["Portfolio SPA", "Dashboard Temps Réel", "App E‑commerce"],
     detailedProjects: [
       {
-        name: "Custom CSS Framework",
-        description: "Framework CSS modulaire avec Sass",
-        githubUrl: "https://github.com/username/sass-framework",
-        technologies: ["Sass", "Gulp", "PostCSS", "Autoprefixer"]
+        name: "Portfolio Interactif",
+        description: "Application monopage animée (SPA) avec routing, lazy loading et composants réutilisables.",
+        githubUrl: "https://github.com/SneusFR/Portfolio",
+        technologies: ["React", "TypeScript", "Vite", "Framer Motion", "CSS Modules"]
       },
       {
-        name: "WordPress Theme",
-        description: "Thème WordPress personnalisé",
-        githubUrl: "https://github.com/username/wp-theme",
-        technologies: ["Sass", "PHP", "WordPress", "Webpack"]
+        name: "Dashboard IoT Temps Réel",
+        description: "Dashboard de monitoring avec WebSocket, graphes dynamiques et filtrage côté client.",
+        githubUrl: "https://github.com/SneusFR/react-realtime-dashboard",
+        technologies: ["React", "TypeScript", "WebSocket", "Zustand", "Recharts"]
       }
     ],
-    skills: ["Sass/SCSS", "Mixins", "Functions", "Partials", "BEM Methodology", "CSS Architecture"],
+    skills: [
+      "Hooks (useState/useEffect/useMemo)",
+      "Context API & Zustand",
+      "Routing (React Router)",
+      "Performance (memo, lazy, Suspense)",
+      "Code Splitting",
+      "Testing (Jest, RTL)",
+      "TypeScript",
+      "Accessibilité (ARIA)"
+    ],    
     experience: "4 ans",
     icon: reactLogoUrl
   },
@@ -368,7 +405,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Django", "FastAPI", "Flask", "SQLAlchemy", "Pandas", "Celery", "pytest"],
     experience: "5 ans",
-    icon: reactLogoUrl
+    icon: pythonUrl
   },
   {
     id: "java",
@@ -394,7 +431,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Spring Boot", "Spring Framework", "Hibernate", "Maven", "JUnit", "Microservices"],
     experience: "4 ans",
-    icon: reactLogoUrl
+    icon: javaUrl
   },
   {
     id: "csharp",
@@ -420,7 +457,7 @@ export const moons: Moon[] = [
     ],
     skills: [".NET Core", "ASP.NET", "Entity Framework", "LINQ", "Azure", "WPF", "xUnit"],
     experience: "3 ans",
-    icon: reactLogoUrl
+    icon: cUrl
   },
   {
     id: "php",
@@ -446,7 +483,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Laravel", "Symfony", "WordPress", "Composer", "PHPUnit", "MySQL", "Eloquent ORM"],
     experience: "4 ans",
-    icon: reactLogoUrl
+    icon: phpUrl
   },
   {
     id: "golang",
@@ -472,7 +509,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Go", "Gin", "Echo", "gRPC", "Goroutines", "Channels", "Testing"],
     experience: "2 ans",
-    icon: reactLogoUrl
+    icon: gologoUrl
   },
   {
     id: "rust",
@@ -498,7 +535,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Rust", "Actix-web", "Tokio", "Serde", "Cargo", "Memory Safety", "Concurrency"],
     experience: "1 an",
-    icon: reactLogoUrl
+    icon: rustUrl
   },
   {
     id: "postgresql",
@@ -524,14 +561,14 @@ export const moons: Moon[] = [
     ],
     skills: ["SQL", "PL/pgSQL", "Indexing", "Query Optimization", "JSONB", "Partitioning", "Replication"],
     experience: "5 ans",
-    icon: reactLogoUrl
+    icon: postgresqlUrl
   },
   {
     id: "mysql",
     label: "MySQL",
     ring: "database",
     angle0: Math.PI / 3,
-    color: "#4479a1",
+    color: "#a1444aff",
     description: "Base de données relationnelle populaire pour applications web et mobiles.",
     projects: ["Web App DB", "CMS Database", "API Backend"],
     detailedProjects: [
@@ -550,14 +587,14 @@ export const moons: Moon[] = [
     ],
     skills: ["MySQL", "InnoDB", "Query Optimization", "Replication", "Clustering", "Performance Tuning"],
     experience: "6 ans",
-    icon: reactLogoUrl
+    icon: mysqlUrl
   },
   {
     id: "mongodb",
     label: "MongoDB",
     ring: "database",
     angle0: (2 * Math.PI) / 3,
-    color: "#47a248",
+    color: "#be54b8ff",
     description: "Base de données NoSQL orientée documents pour applications modernes.",
     projects: ["Real-time App", "Content Platform", "IoT Data Storage"],
     detailedProjects: [
@@ -576,7 +613,7 @@ export const moons: Moon[] = [
     ],
     skills: ["MongoDB", "Mongoose", "Aggregation Pipeline", "Sharding", "Replica Sets", "GridFS"],
     experience: "4 ans",
-    icon: reactLogoUrl
+    icon: mongodbUrl
   },
   {
     id: "redis",
@@ -602,7 +639,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Redis", "Caching Strategies", "Pub/Sub", "Lua Scripting", "Redis Cluster", "Sentinel"],
     experience: "3 ans",
-    icon: reactLogoUrl
+    icon: redisUrl
   },
   {
     id: "elasticsearch",
@@ -628,7 +665,7 @@ export const moons: Moon[] = [
     ],
     skills: ["Elasticsearch", "Kibana", "Logstash", "Query DSL", "Aggregations", "Index Management"],
     experience: "2 ans",
-    icon: reactLogoUrl
+    icon: mssqlUrl
   },
   {
     id: "sqlite",
@@ -654,7 +691,7 @@ export const moons: Moon[] = [
     ],
     skills: ["SQLite", "SQL", "Database Design", "Mobile Development", "Embedded Systems", "Performance"],
     experience: "4 ans",
-    icon: reactLogoUrl
+    icon: sqliteUrl
   }
 ];
 

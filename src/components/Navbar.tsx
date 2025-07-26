@@ -19,7 +19,7 @@ export function Navbar({
   const navItems = [
     { label: 'Accueil', href: '/', isRouter: true },
     { label: 'Compétences', href: '/skills', isRouter: true },
-    { label: 'Projets', href: '#projects', isRouter: false },
+    { label: 'Projets', href: '/projects', isRouter: true },
     { label: 'À propos', href: '#about', isRouter: false },
     { label: 'Contact', href: '#contact', isRouter: false }
   ];
