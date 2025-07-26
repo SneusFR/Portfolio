@@ -235,12 +235,31 @@ body.skills-page {
   }
 }
 @keyframes glow {
-  0%, 100% { opacity: 0.5; }
+  0%, 100% { opacity: 0.3; }
+  25% { opacity: 0.8; }
   50% { opacity: 1; }
+  75% { opacity: 0.6; }
 }
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+@keyframes slow-float {
+  0% { 
+    transform: translate(-50%, -50%) translateX(0px) translateY(0px);
+  }
+  25% { 
+    transform: translate(-50%, -50%) translateX(30px) translateY(-20px);
+  }
+  50% { 
+    transform: translate(-50%, -50%) translateX(-15px) translateY(25px);
+  }
+  75% { 
+    transform: translate(-50%, -50%) translateX(20px) translateY(10px);
+  }
+  100% { 
+    transform: translate(-50%, -50%) translateX(0px) translateY(0px);
+  }
 }
 
 .animate-spin { animation: spin 1s linear infinite; }
@@ -248,7 +267,11 @@ body.skills-page {
 .animate-ping { animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
 .animate-gradient-x { animation: gradient-x 3s ease infinite; }
 .animate-float { animation: float 3s ease-in-out infinite; }
-.animate-glow { animation: glow 2s ease-in-out infinite; }
+.animate-glow { animation: glow 8s ease-in-out infinite; }
+.animate-slow-float { animation: slow-float 25s ease-in-out infinite; }
+
+/* Durée de transition personnalisée pour les effets de glow */
+.duration-\[5000ms\] { transition-duration: 5000ms; }
 .animate-shimmer { animation: shimmer 2s ease-in-out infinite; }
 
 /* Couleurs personnalisées */
@@ -2906,3 +2929,213 @@ input[type="search"]::-webkit-search-results-decoration {
 .dark .focus-within\:bg-gray-900\/50:focus-within { background-color: rgba(17, 24, 39, 0.5); }
 .dark .focus-within\:border-gray-600\/50:focus-within { border-color: rgba(75, 85, 99, 0.5); }
 .dark .hover\:bg-gray-700\/50:hover { background-color: rgba(55, 65, 81, 0.5); }
+
+/* ====== SCROLLBAR PERSONNALISÉE ====== */
+
+/* Scrollbar pour WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.25) 100%);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.25) 0%, 
+    rgba(255, 255, 255, 0.35) 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.35) 0%, 
+    rgba(255, 255, 255, 0.45) 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Mode clair */
+.is-light ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.is-light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.2) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.is-light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.3) 100%);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.is-light ::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.3) 0%, 
+    rgba(0, 0, 0, 0.4) 100%);
+}
+
+.is-light ::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* Scrollbar pour Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+.is-light html {
+  scrollbar-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.03);
+}
+
+/* Scrollbar pour les éléments avec overflow */
+.overflow-y-auto,
+.overflow-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+.is-light .overflow-y-auto,
+.is-light .overflow-auto {
+  scrollbar-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.03);
+}
+
+/* Scrollbar spéciale pour la sidebar */
+.sidebar-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  border: none;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.skills-sidebar.is-light .sidebar-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.skills-sidebar.is-light .sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Scrollbar pour les dialogs et modals */
+.max-h-80vh::-webkit-scrollbar {
+  width: 6px;
+}
+
+.max-h-80vh::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
+}
+
+.max-h-80vh::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.max-h-80vh::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Mode clair pour les dialogs */
+.is-light .max-h-80vh::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.is-light .max-h-80vh::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.is-light .max-h-80vh::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de glow subtil pour la scrollbar principale */
+::-webkit-scrollbar-thumb {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.is-light ::-webkit-scrollbar-thumb {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.is-light ::-webkit-scrollbar-thumb:hover {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation smooth pour l'apparition de la scrollbar */
+::-webkit-scrollbar-thumb {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Masquer la scrollbar sur mobile pour une expérience plus propre */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .is-light ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .is-light ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}

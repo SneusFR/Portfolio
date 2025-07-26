@@ -4,6 +4,17 @@ interface StarryBackgroundProps {
   isDarkMode: boolean;
 }
 
+interface GlowEffect {
+  id: number;
+  initialX: number;
+  initialY: number;
+  size: number;
+  color: string;
+  opacity: number;
+  animationDelay: number;
+  animationDuration: number;
+}
+
 export function StarryBackground({ isDarkMode }: StarryBackgroundProps) {
   const [particles, setParticles] = useState<Array<{
     id: number;
@@ -15,6 +26,8 @@ export function StarryBackground({ isDarkMode }: StarryBackgroundProps) {
     animationDelay: number;
     animationDuration: number;
   }>>([]);
+
+  const [glowEffects, setGlowEffects] = useState<GlowEffect[]>([]);
 
   useEffect(() => {
     const colors = [
@@ -40,6 +53,21 @@ export function StarryBackground({ isDarkMode }: StarryBackgroundProps) {
     }));
 
     setParticles(newParticles);
+
+    // Initialiser les effets de glow fixes qui bougent lentement
+    const glowColors = ['blue', 'purple', 'emerald', 'pink'];
+    const fixedGlows = Array.from({ length: 4 }, (_, i) => ({
+      id: i,
+      initialX: Math.random() * 70 + 15, // Entre 15% et 85%
+      initialY: Math.random() * 70 + 15, // Entre 15% et 85%
+      size: Math.random() * 150 + 200, // Entre 200px et 350px
+      color: glowColors[i % glowColors.length],
+      opacity: Math.random() * 0.015 + 0.008, // Très subtil : entre 0.008 et 0.023
+      animationDelay: i * 5, // Décalage de 5s entre chaque glow
+      animationDuration: Math.random() * 10 + 20, // Entre 20s et 30s pour un mouvement très lent
+    }));
+
+    setGlowEffects(fixedGlows);
   }, []);
 
   return (
@@ -63,22 +91,23 @@ export function StarryBackground({ isDarkMode }: StarryBackgroundProps) {
         />
       ))}
       
-      {/* Effets de glow subtils et uniformes */}
-      <div className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-5 animate-pulse ${
-        isDarkMode ? 'bg-blue-500' : 'bg-blue-400'
-      }`} style={{ animationDelay: '0s', animationDuration: '8s' }} />
-      
-      <div className={`absolute top-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-6 animate-pulse ${
-        isDarkMode ? 'bg-purple-500' : 'bg-purple-400'
-      }`} style={{ animationDelay: '2s', animationDuration: '10s' }} />
-      
-      <div className={`absolute bottom-1/3 left-1/3 w-72 h-72 rounded-full blur-3xl opacity-4 animate-pulse ${
-        isDarkMode ? 'bg-emerald-500' : 'bg-emerald-400'
-      }`} style={{ animationDelay: '4s', animationDuration: '12s' }} />
-      
-      <div className={`absolute bottom-1/4 right-1/3 w-64 h-64 rounded-full blur-3xl opacity-3 animate-pulse ${
-        isDarkMode ? 'bg-pink-500' : 'bg-pink-400'
-      }`} style={{ animationDelay: '6s', animationDuration: '9s' }} />
+      {/* Effets de glow fixes qui bougent lentement */}
+      {glowEffects.map((glow) => (
+        <div
+          key={glow.id}
+          className={`absolute rounded-full blur-3xl animate-slow-float bg-${glow.color}-${isDarkMode ? '500' : '400'}`}
+          style={{
+            left: `${glow.initialX}%`,
+            top: `${glow.initialY}%`,
+            width: `${glow.size}px`,
+            height: `${glow.size}px`,
+            opacity: glow.opacity,
+            animationDelay: `${glow.animationDelay}s`,
+            animationDuration: `${glow.animationDuration}s`,
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      ))}
     </div>
   );
 }
