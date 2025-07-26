@@ -17,19 +17,13 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     }))
   );
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredProjects, setFilteredProjects] = useState(allProjects);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [selectedRings, setSelectedRings] = useState<string[]>([]);
 
-  // Catégories uniques
-  const categories = ['all', ...Array.from(new Set(moons.map(moon => moon.label)))];
-
   useEffect(() => {
-    let projects = selectedCategory === 'all'
-      ? allProjects
-      : allProjects.filter(project => project.category === selectedCategory);
+    let projects = allProjects;
 
     // Filtrage par rings (passion, frontend, backend, database)
     if (selectedRings.length > 0) {
@@ -49,7 +43,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     }
 
     setFilteredProjects(projects);
-  }, [selectedCategory, searchTerm, selectedRings]);
+  }, [searchTerm, selectedRings]);
 
   const toggleRingFilter = (ring: string) => {
     setSelectedRings(prev => 
