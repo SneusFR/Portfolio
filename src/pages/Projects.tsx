@@ -20,6 +20,8 @@ export function Projects({ isDarkMode }: ProjectsProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredProjects, setFilteredProjects] = useState(allProjects);
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [selectedRings, setSelectedRings] = useState<string[]>([]);
 
   // Catégories uniques
   const categories = ['all', ...Array.from(new Set(moons.map(moon => moon.label)))];
@@ -28,6 +30,14 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     let projects = selectedCategory === 'all'
       ? allProjects
       : allProjects.filter(project => project.category === selectedCategory);
+
+    // Filtrage par rings (passion, frontend, backend, database)
+    if (selectedRings.length > 0) {
+      projects = projects.filter(project => {
+        const projectMoon = moons.find(moon => moon.label === project.category);
+        return projectMoon && selectedRings.includes(projectMoon.ring);
+      });
+    }
 
     if (searchTerm.trim() !== '') {
       const lower = searchTerm.toLowerCase();
@@ -39,7 +49,20 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     }
 
     setFilteredProjects(projects);
-  }, [selectedCategory, searchTerm]);
+  }, [selectedCategory, searchTerm, selectedRings]);
+
+  const toggleRingFilter = (ring: string) => {
+    setSelectedRings(prev => 
+      prev.includes(ring) 
+        ? prev.filter(r => r !== ring)
+        : [...prev, ring]
+    );
+  };
+
+  const clearAllFilters = () => {
+    setSelectedRings([]);
+    setIsFilterOpen(false);
+  };
 
   return (
     <div className="min-h-screen relative">
@@ -47,13 +70,13 @@ export function Projects({ isDarkMode }: ProjectsProps) {
       <div className="relative z-10 pt-24 pb-16 px-6">
         <div className="max-w-7xl mx-auto">
           {/* En-tête */}
-          <div className="text-center mb-16">
+          <div className="text-center">
             <div className="inline-block mb-6">
 
             </div>
 
               <h1
-                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 mt-2 leading-tight ${
+                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-2 leading-tight ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -65,7 +88,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
               </h1>
 
             <p
-              className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mt-6 ${
+              className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mt-0 ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
               }`}
             >
@@ -74,94 +97,168 @@ export function Projects({ isDarkMode }: ProjectsProps) {
               alliant innovation et performance
             </p>
 
-            {/* Barre de recherche glassmorphism */}
-            <div className="flex justify-center mt-10">
+            {/* Barre de recherche et filtres */}
+            <div className="flex flex-col items-center gap-4 mt-10">
+              {/* Container principal avec searchbar et bouton filtre */}
+              <div className="flex items-center gap-4">
+                {/* Barre de recherche glassmorphism */}
+                <div
+                  className={`flex items-center gap-3 w-full max-w-md px-6 py-4 rounded-full backdrop-blur-lg border shadow-lg transition-all duration-300 ${
+                    isDarkMode
+                      ? 'bg-white/5 border-white/10'
+                      : 'bg-black/5 border-black/10'
+                  }`}
+                >
+                  {/* Icône loupe */}
+                  <svg
+                    className={`w-5 h-5 flex-shrink-0 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-500'
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.15 13.15z"
+                    />
+                  </svg>
+
+                  {/* Champ de recherche */}
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                    placeholder="Rechercher un projet..."
+                    className={`flex-1 bg-transparent focus:outline-none text-base ${
+                      isDarkMode
+                        ? 'text-gray-100 placeholder-gray-400'
+                        : 'text-gray-700 placeholder-gray-500'
+                    }`}
+                  />
+
+                  {/* Bouton clear */}
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className={`w-6 h-6 flex items-center justify-center rounded-full transition-all duration-200 ${
+                        isDarkMode
+                          ? 'text-gray-400 hover:text-white'
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+
+                {/* Bouton filtre style navbar */}
+                <button
+                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  className={`flex items-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 backdrop-blur-lg border shadow-lg hover:scale-105 ${
+                    isFilterOpen || selectedRings.length > 0
+                      ? isDarkMode
+                        ? 'bg-blue-500/20 border-blue-400/30 text-blue-300 shadow-blue-500/25'
+                        : 'bg-blue-100/70 border-blue-300/50 text-blue-700 shadow-blue-200/50'
+                      : isDarkMode
+                      ? 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20'
+                      : 'bg-black/5 border-black/10 text-gray-600 hover:bg-black/10 hover:border-black/20'
+                  }`}
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                    />
+                  </svg>
+                  <span>Filtres</span>
+                  {selectedRings.length > 0 && (
+                    <span className="bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {selectedRings.length}
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              {/* Panel de filtres avec animation horizontale */}
               <div
-                className={`flex items-center gap-3 w-full max-w-md px-6 py-4 rounded-full backdrop-blur-lg border shadow-lg transition-all duration-300 ${
-                  isDarkMode
-                    ? 'bg-white/5 border-white/10'
-                    : 'bg-black/5 border-black/10'
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  isFilterOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                {/* Icône loupe */}
-                <svg
-                  className={`w-5 h-5 flex-shrink-0 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-500'
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.15 13.15z"
-                  />
-                </svg>
-
-                {/* Champ de recherche */}
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={e => setSearchTerm(e.target.value)}
-                  placeholder="Rechercher un projet..."
-                  className={`flex-1 bg-transparent focus:outline-none text-base ${
+                <div
+                  className={`flex flex-wrap justify-center gap-3 p-6 rounded-2xl backdrop-blur-lg border shadow-lg ${
                     isDarkMode
-                      ? 'text-gray-100 placeholder-gray-400'
-                      : 'text-gray-700 placeholder-gray-500'
+                      ? 'bg-white/5 border-white/10'
+                      : 'bg-black/5 border-black/10'
                   }`}
-                />
-
-                {/* Bouton clear */}
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm('')}
-                    className={`w-6 h-6 flex items-center justify-center rounded-full transition-all duration-200 ${
-                      isDarkMode
-                        ? 'text-gray-400 hover:text-white'
-                        : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                >
+                  {/* Filtres par rings */}
+                  {[
+                    { key: 'passion', label: 'Passion', color: '#60a5fa' },
+                    { key: 'frontend', label: 'Front-end', color: '#4ade80' },
+                    { key: 'backend', label: 'Back-end', color: '#f59e0b' },
+                    { key: 'database', label: 'Base de données', color: '#ef4444' }
+                  ].map(ring => (
+                    <button
+                      key={ring.key}
+                      onClick={() => toggleRingFilter(ring.key)}
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 backdrop-blur-sm border hover:scale-105 ${
+                        selectedRings.includes(ring.key)
+                          ? 'text-white shadow-lg'
+                          : isDarkMode
+                          ? 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'
+                          : 'bg-black/5 border-black/10 text-gray-600 hover:bg-black/10'
+                      }`}
+                      style={selectedRings.includes(ring.key) ? {
+                        backgroundColor: `${ring.color}40`,
+                        borderColor: `${ring.color}60`,
+                        boxShadow: `0 4px 20px ${ring.color}25`
+                      } : {}}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                )}
+                      {ring.label}
+                    </button>
+                  ))}
+
+                  {/* Bouton clear filters */}
+                  {selectedRings.length > 0 && (
+                    <button
+                      onClick={clearAllFilters}
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 backdrop-blur-sm border hover:scale-105 ${
+                        isDarkMode
+                          ? 'bg-red-500/20 border-red-400/30 text-red-300 hover:bg-red-500/30'
+                          : 'bg-red-100/70 border-red-300/50 text-red-700 hover:bg-red-200/70'
+                      }`}
+                    >
+                      Effacer tout
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Filtres de catégories */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {categories.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 backdrop-blur-md border ${
-                  selectedCategory === category
-                    ? isDarkMode
-                      ? 'bg-blue-500/20 border-blue-400/30 text-blue-300 shadow-lg shadow-blue-500/25'
-                      : 'bg-blue-100/70 border-blue-300/50 text-blue-700 shadow-lg shadow-blue-200/50'
-                    : isDarkMode
-                    ? 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20'
-                    : 'bg-black/5 border-black/10 text-gray-600 hover:bg-black/10 hover:border-black/20'
-                } hover:scale-105`}
-              >
-                {category === 'all' ? 'Tous les projets' : category}
-              </button>
-            ))}
-          </div>
 
           {/* Grille des projets */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
