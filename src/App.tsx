@@ -54,7 +54,7 @@ function App() {
 
   return (
     <Router>
-      <div className={`w-full min-h-screen ${isDarkMode ? 'dark' : ''}`}>
+      <div className={`w-full min-h-screen overflow-x-hidden ${isDarkMode ? 'dark' : ''}`}>
         {/* Gestionnaire des classes du body */}
         <BodyClassManager />
         

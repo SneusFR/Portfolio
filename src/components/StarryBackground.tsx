@@ -78,8 +78,8 @@ export function StarryBackground({ isDarkMode }: StarryBackgroundProps) {
           key={particle.id}
           className="absolute rounded-full animate-pulse"
           style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
+            left: `${Math.min(Math.max(particle.x, 2), 98)}%`,
+            top: `${Math.min(Math.max(particle.y, 2), 98)}%`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
             backgroundColor: particle.color,
@@ -97,8 +97,8 @@ export function StarryBackground({ isDarkMode }: StarryBackgroundProps) {
           key={glow.id}
           className={`absolute rounded-full blur-3xl animate-slow-float bg-${glow.color}-${isDarkMode ? '500' : '400'}`}
           style={{
-            left: `${glow.initialX}%`,
-            top: `${glow.initialY}%`,
+            left: `${Math.min(Math.max(glow.initialX, 10), 90)}%`,
+            top: `${Math.min(Math.max(glow.initialY, 10), 90)}%`,
             width: `${glow.size}px`,
             height: `${glow.size}px`,
             opacity: glow.opacity,

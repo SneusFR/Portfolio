@@ -3,6 +3,14 @@ export type Project = {
   description: string;
   githubUrl: string;
   technologies: string[];
+  image?: string;
+  demoUrl?: string;
+  technicalSpecs?: {
+    architecture: string;
+    performance: string;
+    security: string;
+    scalability: string;
+  };
 } ;
 
 export type Moon = {
@@ -151,7 +159,13 @@ export const moons: Moon[] = [
         name: "E-commerce API",
         description: "API REST complète pour plateforme e-commerce",
         githubUrl: "https://github.com/username/ecommerce-api",
-        technologies: ["Node.js", "Express", "PostgreSQL", "Redis"]
+        technologies: ["Node.js", "Express", "PostgreSQL", "Redis"],
+        technicalSpecs: {
+          architecture: "Architecture REST avec middleware de validation et gestion d'erreurs centralisée",
+          performance: "Cache Redis pour 95% des requêtes, temps de réponse < 50ms",
+          security: "JWT avec refresh tokens, rate limiting et validation des entrées",
+          scalability: "Load balancing horizontal avec clustering Node.js"
+        }
       },
       {
         name: "Real-time Chat",
@@ -359,7 +373,14 @@ export const moons: Moon[] = [
         name: "Portfolio Interactif",
         description: "Application monopage animée (SPA) avec routing, lazy loading et composants réutilisables.",
         githubUrl: "https://github.com/SneusFR/Portfolio",
-        technologies: ["React", "TypeScript", "Vite", "Framer Motion", "CSS Modules"]
+        technologies: ["React", "TypeScript", "Vite", "Framer Motion", "CSS Modules"],
+        demoUrl: "https://portfolio-sneus.vercel.app",
+        technicalSpecs: {
+          architecture: "Architecture SPA avec React Router et code splitting automatique",
+          performance: "Temps de chargement < 2s avec lazy loading et optimisation Vite",
+          security: "Validation TypeScript stricte et sanitisation des données",
+          scalability: "Composants modulaires et système de design réutilisable"
+        }
       },
       {
         name: "Dashboard IoT Temps Réel",

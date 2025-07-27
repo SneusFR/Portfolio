@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { moons } from '../data';
+import { ProjectModal } from '../components/ProjectModal';
 
 interface ProjectsProps {
   isDarkMode: boolean;
@@ -21,6 +22,8 @@ export function Projects({ isDarkMode }: ProjectsProps) {
   const [filteredProjects, setFilteredProjects] = useState(allProjects);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [selectedRings, setSelectedRings] = useState<string[]>([]);
+  const [selectedProject, setSelectedProject] = useState<typeof allProjects[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     let projects = allProjects;
@@ -56,6 +59,16 @@ export function Projects({ isDarkMode }: ProjectsProps) {
   const clearAllFilters = () => {
     setSelectedRings([]);
     setIsFilterOpen(false);
+  };
+
+  const openModal = (project: typeof allProjects[0]) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
   };
 
   return (
@@ -343,17 +356,29 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     </a>
 
                     <button
-                      className="flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/25"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openModal(project);
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/25 cursor-pointer"
+                      style={{ pointerEvents: 'auto', zIndex: 10 }}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                         />
                       </svg>
-                      Demo
+                      Détails
                     </button>
                   </div>
 
@@ -414,6 +439,14 @@ export function Projects({ isDarkMode }: ProjectsProps) {
           </div>
         </div>
       </div>
+
+      {/* Modale des détails du projet */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        isDarkMode={isDarkMode}
+      />
     </div>
   );
 }
