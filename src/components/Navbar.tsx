@@ -20,7 +20,7 @@ export function Navbar({
     { label: 'Accueil', href: '/', isRouter: true },
     { label: 'Compétences', href: '/skills', isRouter: true },
     { label: 'Projets', href: '/projects', isRouter: true },
-    { label: 'À propos', href: '#about', isRouter: false },
+    { label: 'À propos', href: '/about', isRouter: true },
     { label: 'Contact', href: '#contact', isRouter: false }
   ];
 

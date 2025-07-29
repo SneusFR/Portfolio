@@ -119,15 +119,29 @@ export function Home({ isDarkMode }: HomeProps) {
         </div>
         
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className={`w-6 h-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          onClick={() => scrollToSection('projects')}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform duration-200 cursor-pointer"
+          style={{
+            background: 'none',
+            border: 'none',
+            outline: 'none',
+            padding: 0,
+            margin: 0,
+            boxShadow: 'none',
+            appearance: 'none',
+            WebkitAppearance: 'none'
+          }}
+          aria-label="Aller à la section projets"
+        >
+          <svg className={`w-6 h-6 ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'} transition-colors duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
-        </div>
+        </button>
       </section>
 
       {/* Projects Preview Section - Enhanced Glassmorphism */}
-      <section className="relative py-32 px-6 overflow-hidden">
+      <section id="projects" className="relative py-32 px-6 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <div className={`absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl opacity-20 animate-pulse ${
@@ -479,8 +493,21 @@ export function Home({ isDarkMode }: HomeProps) {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="about" className="relative py-32 px-6 overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0">
+          <div className={`absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl opacity-20 animate-pulse ${
+            isDarkMode ? 'bg-blue-500' : 'bg-blue-400'
+          }`} style={{ animationDelay: '0s', animationDuration: '4s' }} />
+          <div className={`absolute top-40 right-20 w-96 h-96 rounded-full blur-3xl opacity-15 animate-pulse ${
+            isDarkMode ? 'bg-purple-500' : 'bg-purple-400'
+          }`} style={{ animationDelay: '1s', animationDuration: '5s' }} />
+          <div className={`absolute bottom-20 left-1/3 w-80 h-80 rounded-full blur-3xl opacity-10 animate-pulse ${
+            isDarkMode ? 'bg-emerald-500' : 'bg-emerald-400'
+          }`} style={{ animationDelay: '2s', animationDuration: '6s' }} />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className={`text-4xl md:text-5xl font-bold mb-8 ${

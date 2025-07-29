@@ -5,6 +5,7 @@ import { StarryBackground } from './components/StarryBackground';
 import { Home } from './pages/Home';
 import { Skills } from './pages/Skills';
 import { Projects } from './pages/Projects';
+import { About } from './pages/About';
 
 // Composant pour gérer les classes du body selon la route
 function BodyClassManager() {
@@ -73,6 +74,7 @@ function App() {
           <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
           <Route path="/skills" element={<Skills isDarkMode={isDarkMode} onDialogStateChange={setIsDialogOpen} />} />
           <Route path="/projects" element={<Projects isDarkMode={isDarkMode} />} />
+          <Route path="/about" element={<About isDarkMode={isDarkMode} />} />
         </Routes>
       </div>
     </Router>

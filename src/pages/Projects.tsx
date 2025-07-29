@@ -141,7 +141,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     placeholder="Rechercher un projet..."
                     className={`flex-1 bg-transparent focus:outline-none text-base ${
                       isDarkMode
-                        ? 'text-gray-100 placeholder-gray-400'
+                        ? 'text-white placeholder-gray-400'
                         : 'text-gray-700 placeholder-gray-500'
                     }`}
                   />
@@ -273,11 +273,12 @@ export function Projects({ isDarkMode }: ProjectsProps) {
               <div key={`${project.name}-${index}`} className="group relative">
                 {/* Carte glassmorphing */}
                 <div
-                  className={`relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${
+                  className={`glass-edge relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${
                     isDarkMode
                       ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
                       : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
                   } shadow-2xl hover:shadow-3xl`}
+                  style={{ '--edge-color': `${project.categoryColor}99` } as React.CSSProperties}
                 >
                   {/* Badge de catégorie */}
                   <div className="flex items-center gap-3 mb-6">
@@ -292,12 +293,14 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                       />
                     </div>
                     <span
-                      className="text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm border"
+                      className="category-badge text-sm font-semibold px-3 py-2 rounded-full backdrop-blur-sm border transition-all duration-200 hover:scale-105"
                       style={{
-                        backgroundColor: `${project.categoryColor}10`,
-                        borderColor: `${project.categoryColor}20`,
+                        '--cat': project.categoryColor,
+                        backgroundColor: `${project.categoryColor}33`,
+                        borderColor: `${project.categoryColor}55`,
                         color: project.categoryColor,
-                      }}
+                        boxShadow: '0 1px 3px rgba(0,0,0,.06)'
+                      } as React.CSSProperties}
                     >
                       {project.category}
                     </span>
@@ -326,11 +329,14 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     {project.technologies.map(tech => (
                       <span
                         key={tech}
-                        className={`px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm border ${
+                        className={`tech-tag px-3 py-2 text-xs font-semibold rounded-full backdrop-blur-sm border transition-all duration-200 hover:scale-105 ${
                           isDarkMode
-                            ? 'bg-gray-800/50 border-gray-600/30 text-gray-300'
-                            : 'bg-white/70 border-gray-200/50 text-gray-700'
+                            ? 'bg-gray-500/15 border-gray-500/35 text-gray-200'
+                            : 'bg-gray-500/15 border-gray-500/35 text-gray-900'
                         }`}
+                        style={{
+                          boxShadow: '0 1px 3px rgba(0,0,0,.06)'
+                        }}
                       >
                         {tech}
                       </span>

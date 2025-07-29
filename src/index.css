@@ -2887,6 +2887,36 @@ input[type="search"] {
   caret-color: currentColor;
 }
 
+/* ====== STYLES SPÉCIFIQUES POUR LA BARRE DE RECHERCHE ====== */
+
+/* Force la couleur blanche du texte dans la barre de recherche en mode sombre */
+.dark input[type="text"],
+.dark input[type="search"] {
+  color: #ffffff !important;
+  caret-color: #ffffff;
+}
+
+/* Couleur du placeholder en mode sombre */
+.dark input[type="text"]::placeholder,
+.dark input[type="search"]::placeholder {
+  color: #9ca3af !important; /* gray-400 */
+  opacity: 1;
+}
+
+/* Mode clair - couleur du texte */
+input[type="text"],
+input[type="search"] {
+  color: #374151; /* gray-700 */
+  caret-color: #374151;
+}
+
+/* Couleur du placeholder en mode clair */
+input[type="text"]::placeholder,
+input[type="search"]::placeholder {
+  color: #6b7280; /* gray-500 */
+  opacity: 1;
+}
+
 /* on vire aussi les petits boutons "reset"/"loupe" de WebKit si tu n'en veux pas */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -3288,6 +3318,46 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .project-modal-action-btn.primary:hover {
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* ------------------------------------------------------------------
+   Bordure lumineuse subtile pour tous les panneaux « glass »
+   ‑ reprend le radius, respecte le padding, 100 % accessible
+   ------------------------------------------------------------------*/
+.glass-edge{
+  position:relative;          /* contexte pour le ::before              */
+}
+
+.glass-edge::before{
+  content:'';
+  position:absolute;
+  inset:0;                    /* couvre toute la carte                   */
+  border-radius:inherit;      /* même arrondi que le panneau             */
+
+  /* épaisseur de la bordure */
+  padding:1.5px;              /* 1 px si vous la voulez (encore) + fine  */
+
+  /* le dégradé peut être blanc → transparent                      */
+  /* ou bien reprendre une var « categoryColor » passée en inline  */
+  background: conic-gradient(from 0deg at 50% 50%,
+              var(--edge-color,rgba(255,255,255,.6)) 0 360deg);
+
+  /* technique "mask‑border" : ne garder que le tracé du padding    */
+  -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+
+  pointer-events:none;        /* on n'intercepte aucun clic              */
+  opacity:.85;                /* intensité de base                       */
+  transition:opacity .3s ease;
+}
+
+/* Un léger boost au survol pour le glow */
+.glass-edge:hover::before,
+.group:hover .glass-edge::before{
+  opacity:1;
 }
 
 /* ====== SCROLLBAR PERSONNALISÉE ====== */
