@@ -5,7 +5,7 @@ import { StarryBackground } from './components/StarryBackground';
 import { Home } from './pages/Home';
 import { Skills } from './pages/Skills';
 import { Projects } from './pages/Projects';
-import { About } from './pages/About';
+import About from './pages/About';
 
 // Composant pour gérer les classes du body selon la route
 function BodyClassManager() {
@@ -41,6 +41,33 @@ function App() {
     }
   }, [isDarkMode]);
 
+  // Fonction de nettoyage globale pour restaurer le scrolling
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      document.body.style.overflow = '';
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Vérifier si le scrolling est bloqué sans raison valable
+        const modals = document.querySelectorAll('[data-modal-open="true"]');
+        if (modals.length === 0 && document.body.style.overflow === 'hidden') {
+          document.body.style.overflow = '';
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      // Nettoyage final
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   // Sauvegarder la préférence dans localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem('darkMode');
@@ -74,7 +101,7 @@ function App() {
           <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
           <Route path="/skills" element={<Skills isDarkMode={isDarkMode} onDialogStateChange={setIsDialogOpen} />} />
           <Route path="/projects" element={<Projects isDarkMode={isDarkMode} />} />
-          <Route path="/about" element={<About isDarkMode={isDarkMode} />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </Router>
