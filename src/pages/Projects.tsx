@@ -271,9 +271,15 @@ export function Projects({ isDarkMode }: ProjectsProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
               <div key={`${project.name}-${index}`} className="group relative">
-                {/* Carte glassmorphing */}
+                {/* Carte glassmorphing - maintenant cliquable */}
                 <div
-                  className={`glass-edge relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openModal(project)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') openModal(project);
+                  }}
+                  className={`glass-edge relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer ${
                     isDarkMode
                       ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
                       : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
@@ -349,6 +355,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 ${
                         isDarkMode
                           ? 'bg-gray-800/60 text-gray-300 hover:bg-gray-700/60 hover:text-white'
