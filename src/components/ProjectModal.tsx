@@ -26,15 +26,15 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('modal-open');
       const timer = setTimeout(() => setIsVisible(false), 300);
       return () => clearTimeout(timer);
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('modal-open');
     };
   }, [isOpen]);
 
@@ -97,7 +97,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
 
       {/* Contenu de la modale */}
       <div
-        className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl backdrop-blur-xl border shadow-2xl transition-all duration-500 ${
+        className={`project-modal-content relative w-full max-w-4xl h-[90vh] overflow-y-auto rounded-3xl backdrop-blur-xl border shadow-2xl transition-all duration-500 ${
           isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-8'
         } ${
           isDarkMode
@@ -111,8 +111,8 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           onClick={onClose}
           className={`absolute top-6 right-6 z-10 w-10 h-10 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
             isDarkMode
-              ? 'bg-gray-800/60 border-gray-600/30 text-gray-300 hover:bg-gray-700/60 hover:text-white'
-              : 'bg-white/60 border-gray-200/50 text-gray-700 hover:bg-white/80 hover:text-gray-900'
+              ? 'bg-gray-800/60 border-gray-600/30 text-black hover:bg-gray-700/60 hover:text-black'
+              : 'bg-white/60 border-gray-200/50 text-black hover:bg-white/80 hover:text-black'
           }`}
         >
           <svg className="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -3569,3 +3569,18 @@ html {
     background: rgba(0, 0, 0, 0.2);
   }
 }
+
+/* ====== CLASSE POUR VERROUILLER LE BODY PENDANT LA MODALE ====== */
+
+/* Verrouillage du scroll du body quand une modale est ouverte */
+body.modal-open {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  overflow-y: scroll; /* garde la barre pour ne pas décaler le layout */
+}
+
+/* Support iOS pour le scroll momentum dans les modales */
+.project-modal-content {
+  -webkit-overflow-scrolling: touch; /* momentum scroll iOS */
+}
