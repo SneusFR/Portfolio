@@ -1,34 +1,13 @@
 import { motion } from "framer-motion";
 import { 
-  Star, 
-  Mail, 
-  Globe, 
   MapPin, 
-  Calendar,
   Award,
   Code,
   Palette,
   Zap,
   Users,
-  Target,
-  Lightbulb,
-  Download,
-  ExternalLink
+  Target
 } from "lucide-react";
-import { 
-  PieChart, 
-  Pie, 
-  Cell, 
-  ResponsiveContainer,
-  RadialBarChart,
-  RadialBar,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip
-} from 'recharts';
 
 export default function About() {
   // Données du profil
@@ -137,18 +116,6 @@ export default function About() {
     ]
   };
 
-  // Composant pour les étoiles
-  const StarRating = ({ rating }: { rating: number }) => (
-    <div className="flex gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={16}
-          className={i < Math.floor(rating / 20) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
-        />
-      ))}
-    </div>
-  );
 
   // Composant pour les diplômes et certifications
   const DiplomasAndCertifications = () => (
