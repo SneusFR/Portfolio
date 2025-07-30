@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from "framer-motion";
 import { 
   MapPin, 
@@ -199,7 +201,7 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className="relative"
+          className="relative w-full"
         >
           <div className="flex justify-between items-center mb-3">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -210,41 +212,44 @@ export default function About() {
             </span>
           </div>
           
-          <div className="relative h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+          {/* Labels des niveaux */}
+          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+            <span>Débutant</span>
+            <span>Intermédiaire</span>
+            <span>Avancé</span>
+            <span>Expert</span>
+          </div>
+          
+          <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 shadow-inner">
+            {/* Séparations visuelles */}
+            <div className="absolute inset-0 flex items-center">
+              {/* Séparation à 25% */}
+              <div className="absolute left-[25%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
+              {/* Séparation à 50% */}
+              <div className="absolute left-[50%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
+              {/* Séparation à 75% */}
+              <div className="absolute left-[75%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
+            </div>
+            
             <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${skill.level}%` }}
-              transition={{ duration: 2, delay: index * 0.3, ease: "easeOut" }}
-              className="h-full rounded-full relative"
+              className="h-3 rounded-full shadow-sm relative z-10"
               style={{ 
                 backgroundColor: skill.color,
-                background: `linear-gradient(90deg, ${skill.color}, ${skill.color}E6)`
+                boxShadow: `0 2px 8px ${skill.color}40`
               }}
-            >
-              {/* Effet de brillance */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  repeatDelay: 3,
-                  ease: "easeInOut"
-                }}
-              />
-            </motion.div>
-            
-            {/* Indicateur de niveau */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 2 + index * 0.3 }}
-              className="absolute top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg border-2"
-              style={{ 
-                left: `calc(${skill.level}% - 6px)`,
-                borderColor: skill.color
-              }}
+              initial={{ width: 0 }}
+              animate={{ width: `${skill.level}%` }}
+              transition={{ delay: 0.6 + index * 0.2, duration: 1.5, ease: 'easeOut' }}
             />
+          </div>
+          
+          {/* Marqueurs de pourcentage */}
+          <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1">
+            <span>0%</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>100%</span>
           </div>
         </motion.div>
       ))}
@@ -396,16 +401,16 @@ export default function About() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
-                className="relative flex gap-6"
+                className="relative flex items-start gap-4"
               >
                 {/* Timeline dot */}
-                <div className="flex flex-col items-center">
+                <div className="mt-8 flex flex-col items-center pt-1">
                   <div 
-                    className="w-4 h-4 rounded-full border-4 border-white shadow-lg"
+                    className="mt-[3px] w-3 h-3 rounded-full ring-2 ring-white shadow-lg"
                     style={{ backgroundColor: item.color }}
                   />
                   {index < profile.timeline.length - 1 && (
-                    <div className="w-0.5 h-16 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600 mt-2" />
+                    <div className="w-0.5 flex-1 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600" />
                   )}
                 </div>
                 
