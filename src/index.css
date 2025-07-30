@@ -3360,6 +3360,144 @@ input[type="search"]::-webkit-search-results-decoration {
   opacity:1;
 }
 
+/* ====== CLASSES POUR LES BOUTONS GLASSMORPHISM DIPLOMES/CERTIFICATIONS ====== */
+
+/* Backdrop blur étendu */
+.backdrop-blur-xl { backdrop-filter: blur(24px); }
+.backdrop-blur-2xl { backdrop-filter: blur(40px); }
+
+/* Couleurs avec opacité pour glassmorphism - Ultra transparent */
+.bg-white\/02 { background-color: rgba(255, 255, 255, 0.02); }
+.bg-black\/05 { background-color: rgba(0, 0, 0, 0.05); }
+.bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
+.bg-black\/20 { background-color: rgba(0, 0, 0, 0.2); }
+.border-white\/05 { border-color: rgba(255, 255, 255, 0.05); }
+.border-white\/08 { border-color: rgba(255, 255, 255, 0.08); }
+.border-white\/10 { border-color: rgba(255, 255, 255, 0.1); }
+.border-white\/15 { border-color: rgba(255, 255, 255, 0.15); }
+.border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
+.border-white\/30 { border-color: rgba(255, 255, 255, 0.3); }
+
+/* Couleurs spécifiques pour les boutons actifs - ultra transparent */
+.bg-blue-500\/10 { background-color: rgba(59, 130, 246, 0.1); }
+.bg-blue-500\/15 { background-color: rgba(59, 130, 246, 0.15); }
+.bg-green-500\/10 { background-color: rgba(34, 197, 94, 0.1); }
+.bg-green-500\/15 { background-color: rgba(34, 197, 94, 0.15); }
+.border-blue-500\/15 { border-color: rgba(59, 130, 246, 0.15); }
+.border-blue-500\/20 { border-color: rgba(59, 130, 246, 0.2); }
+.border-green-500\/15 { border-color: rgba(34, 197, 94, 0.15); }
+.border-green-500\/20 { border-color: rgba(34, 197, 94, 0.2); }
+
+/* Gradients ultra-transparents pour les effets de glow */
+.from-blue-500\/05 { --tw-gradient-from: rgba(59, 130, 246, 0.05); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0)); }
+.via-purple-500\/05 { --tw-gradient-stops: var(--tw-gradient-from), rgba(168, 85, 247, 0.05), var(--tw-gradient-to, rgba(168, 85, 247, 0)); }
+.to-green-500\/05 { --tw-gradient-to: rgba(34, 197, 94, 0.05); }
+.from-blue-400\/08 { --tw-gradient-from: rgba(96, 165, 250, 0.08); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(96, 165, 250, 0)); }
+.to-blue-600\/08 { --tw-gradient-to: rgba(37, 99, 235, 0.08); }
+.from-green-400\/08 { --tw-gradient-from: rgba(74, 222, 128, 0.08); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(74, 222, 128, 0)); }
+.to-green-600\/08 { --tw-gradient-to: rgba(22, 163, 74, 0.08); }
+
+/* Effets de glow ultra-subtils */
+.bg-blue-500\/08 { background-color: rgba(59, 130, 246, 0.08); }
+.bg-green-500\/08 { background-color: rgba(34, 197, 94, 0.08); }
+
+/* Opacités ultra-basses */
+.opacity-30 { opacity: 0.3; }
+.opacity-40 { opacity: 0.4; }
+
+/* Backdrop blur medium */
+.backdrop-blur-md { backdrop-filter: blur(12px); }
+
+/* Gradients pour les boutons actifs */
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+.from-blue-500\/80 { --tw-gradient-from: rgba(59, 130, 246, 0.8); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0)); }
+.to-blue-600\/80 { --tw-gradient-to: rgba(37, 99, 235, 0.8); }
+.from-green-500\/80 { --tw-gradient-from: rgba(34, 197, 94, 0.8); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(34, 197, 94, 0)); }
+.to-green-600\/80 { --tw-gradient-to: rgba(22, 163, 74, 0.8); }
+.from-blue-400\/20 { --tw-gradient-from: rgba(96, 165, 250, 0.2); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(96, 165, 250, 0)); }
+.to-blue-600\/20 { --tw-gradient-to: rgba(37, 99, 235, 0.2); }
+.from-green-400\/20 { --tw-gradient-from: rgba(74, 222, 128, 0.2); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(74, 222, 128, 0)); }
+.to-green-600\/20 { --tw-gradient-to: rgba(22, 163, 74, 0.2); }
+
+/* Couleurs de texte pour les états hover */
+.text-blue-300 { color: #93c5fd; }
+.text-green-300 { color: #86efac; }
+.text-blue-400 { color: #60a5fa; }
+.text-green-400 { color: #4ade80; }
+
+/* Hover states pour les couleurs */
+.hover\:text-blue-300:hover { color: #93c5fd; }
+.hover\:text-green-300:hover { color: #86efac; }
+.hover\:text-blue-400:hover { color: #60a5fa; }
+.hover\:text-green-400:hover { color: #4ade80; }
+
+/* Couleurs de background avec opacité pour hover */
+.bg-white\/5 { background-color: rgba(255, 255, 255, 0.05); }
+.hover\:bg-white\/5:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+/* Durées de transition étendues */
+.duration-500 { transition-duration: 500ms; }
+
+/* Overflow pour les boutons */
+.overflow-hidden { overflow: hidden; }
+
+/* Scales pour les effets de glow */
+.scale-110 { transform: scale(1.1); }
+
+/* Opacités pour les effets */
+.opacity-50 { opacity: 0.5; }
+.opacity-60 { opacity: 0.6; }
+
+/* Blur pour les effets de glow */
+.blur-lg { filter: blur(16px); }
+
+/* Z-index pour les couches */
+.z-10 { z-index: 10; }
+
+/* Rounded pour les boutons */
+.rounded-2xl { border-radius: 1rem; }
+.rounded-3xl { border-radius: 1.5rem; }
+
+/* Padding pour les boutons plus grands */
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+
+/* Gap pour l'espacement */
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+
+/* Margin bottom pour l'espacement */
+.mb-12 { margin-bottom: 3rem; }
+
+/* Tailles d'icônes */
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+
+/* Position relative pour les effets */
+.relative { position: relative; }
+
+/* Inset pour les effets de background */
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+
+/* Pointer events */
+.pointer-events-none { pointer-events: none; }
+
+/* Group utilities */
+.group { position: relative; }
+
+/* Mode sombre pour les nouvelles classes */
+.dark .bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
+.dark .bg-black\/20 { background-color: rgba(0, 0, 0, 0.2); }
+.dark .border-white\/10 { border-color: rgba(255, 255, 255, 0.1); }
+.dark .border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
+.dark .border-white\/30 { border-color: rgba(255, 255, 255, 0.3); }
+.dark .text-blue-300 { color: #93c5fd; }
+.dark .text-green-300 { color: #86efac; }
+.dark .text-blue-400 { color: #60a5fa; }
+.dark .text-green-400 { color: #4ade80; }
+.dark .bg-white\/5 { background-color: rgba(255, 255, 255, 0.05); }
+.dark .hover\:bg-white\/5:hover { background-color: rgba(255, 255, 255, 0.05); }
+
 /* ====== SCROLLBAR PERSONNALISÉE ====== */
 
 /* Scrollbar pour WebKit (Chrome, Safari, Edge) */
@@ -3700,6 +3838,32 @@ body.modal-open {
 .dark .timeline-bullet{background:#818cf8;box-shadow:0 0 0 3px rgba(129,140,248,.25);}
 .timeline-item h4{font:600 .9375rem/1 'Inter',sans-serif;}
 .timeline-item small{display:block;font-size:.75rem;opacity:.7;margin-bottom:.25rem;}
+
+/* Positions complémentaires */
+.top-1  { top: 0.25rem; }   /*  4 px */
+.top-2  { top: 0.5rem;  }   /*  8 px */
+.top-3  { top: 0.75rem; }   /* 12 px */
+.top-4  { top: 1rem;   }    /* 16 px */
+.top-5  { top: 1.25rem;}    /* 20 px */
+.top-6  { top: 1.5rem; }    /* 24 px */
+.top-7  { top: 1.75rem;}    /* 28 px */
+.top-8  { top: 2rem;   }    /* 32 px */
+.top-9  { top: 2.25rem;}    /* 36 px */
+.top-10 { top: 2.5rem; }    /* 40 px */
+
+/* Valeurs négatives */
+.-top-1  { top: -0.25rem; } /*  –4 px */
+.-top-2  { top: -0.5rem;  } /*  –8 px */
+.-top-3  { top: -0.75rem; } /* –12 px */
+.-top-4  { top: -1rem;   }  /* –16 px */
+.-top-5  { top: -1.25rem;}  /* –20 px */
+.-top-6  { top: -1.5rem; }  /* –24 px */
+.-top-7  { top: -1.75rem;}  /* –28 px */
+.-top-8  { top: -2rem;   }  /* –32 px */
+.-top-9  { top: -2.25rem;}  /* –36 px */
+.-top-10 { top: -2.5rem; }  /* –40 px */
+
+
 
 /* Skills list ------------------------------------------------- */
 .skill-list{display:flex;flex-direction:column;gap:.5rem;}

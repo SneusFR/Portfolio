@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { 
   MapPin, 
   Award,
@@ -8,10 +9,13 @@ import {
   Palette,
   Zap,
   Users,
-  Target
+  Target,
+  GraduationCap,
+  Shield
 } from "lucide-react";
 
 export default function About() {
+  const [activeTab, setActiveTab] = useState<'diplomas' | 'certifications'>('diplomas');
   // Données du profil
   const profile = {
     name: "Valentin Vanrumbeke",
@@ -123,76 +127,161 @@ export default function About() {
   };
 
 
-  // Composant pour les diplômes et certifications
+  // Composant pour les diplômes et certifications avec switch
   const DiplomasAndCertifications = () => (
-    <div className="space-y-8">
-      {/* Diplômes */}
-      <div>
-        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <Award className="text-blue-600" size={24} />
-          Diplômes
-        </h4>
-        <div className="space-y-4">
-          {profile.diplomas.map((diploma, index) => (
-            <motion.div
-              key={diploma.title}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-gradient-to-r from-blue-50 to-transparent dark:from-blue-900/20 rounded-2xl p-6 border-l-4 border-blue-500"
+    <div className="space-y-6">
+      {/* Switch Toggle - Ultra Transparent Glassmorphism */}
+      <div className="flex justify-center mb-12">
+        <div className="relative backdrop-blur-xl bg-white/02 dark:bg-black/05 border border-white/08 dark:border-white/05 rounded-3xl p-2">
+          {/* Subtle background glow effect */}
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/05 via-purple-500/05 to-green-500/05 blur-xl opacity-30"></div>
+          
+          <div className="relative flex gap-2">
+            <button
+              onClick={() => setActiveTab('diplomas')}
+              className={`relative flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group ${
+                activeTab === 'diplomas'
+                  ? 'text-white'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300'
+              }`}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h5 className="text-lg font-bold text-gray-900 dark:text-white">
-                  {diploma.title}
-                </h5>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/50 px-3 py-1 rounded-full">
-                  {diploma.year}
-                </span>
-              </div>
-              <p className="text-md font-semibold text-blue-700 dark:text-blue-300 mb-2">
-                {diploma.institution}
-              </p>
-              <p className="text-gray-600 dark:text-gray-400">
-                {diploma.description}
-              </p>
-            </motion.div>
-          ))}
+              {/* Active background - ultra transparent */}
+              {activeTab === 'diplomas' && (
+                <div className="absolute inset-0 backdrop-blur-md bg-blue-500/15 dark:bg-blue-500/10 rounded-2xl border border-blue-500/20 dark:border-blue-500/15">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/08 to-blue-600/08 rounded-2xl"></div>
+                </div>
+              )}
+              
+              {/* Hover effect - très subtil */}
+              <div className="absolute inset-0 backdrop-blur-sm bg-white/02 dark:bg-white/02 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <GraduationCap size={24} className="relative z-10" />
+              <span className="relative z-10">Diplômes</span>
+              
+              {/* Glow effect for active state - plus subtil */}
+              {activeTab === 'diplomas' && (
+                <div className="absolute inset-0 rounded-2xl bg-blue-500/08 blur-lg scale-110 opacity-40"></div>
+              )}
+            </button>
+            
+            <button
+              onClick={() => setActiveTab('certifications')}
+              className={`relative flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group ${
+                activeTab === 'certifications'
+                  ? 'text-white'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-green-400 dark:hover:text-green-300'
+              }`}
+            >
+              {/* Active background - ultra transparent */}
+              {activeTab === 'certifications' && (
+                <div className="absolute inset-0 backdrop-blur-md bg-green-500/15 dark:bg-green-500/10 rounded-2xl border border-green-500/20 dark:border-green-500/15">
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-400/08 to-green-600/08 rounded-2xl"></div>
+                </div>
+              )}
+              
+              {/* Hover effect - très subtil */}
+              <div className="absolute inset-0 backdrop-blur-sm bg-white/02 dark:bg-white/02 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <Shield size={24} className="relative z-10" />
+              <span className="relative z-10">Certifications</span>
+              
+              {/* Glow effect for active state - plus subtil */}
+              {activeTab === 'certifications' && (
+                <div className="absolute inset-0 rounded-2xl bg-green-500/08 blur-lg scale-110 opacity-40"></div>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Certifications */}
-      <div>
-        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <Award className="text-green-600" size={24} />
-          Certifications
-        </h4>
-        <div className="grid md:grid-cols-2 gap-4">
-          {profile.certifications.map((cert, index) => (
-            <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              className="bg-gradient-to-r from-green-50 to-transparent dark:from-green-900/20 rounded-2xl p-5 border-l-4 border-green-500 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/50 px-2 py-1 rounded-full">
-                  {cert.year}
-                </span>
-              </div>
-              <h5 className="text-md font-bold text-gray-900 dark:text-white mb-1">
-                {cert.title}
-              </h5>
-              <p className="text-sm font-semibold text-green-700 dark:text-green-300 mb-2">
-                {cert.institution}
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {cert.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      {/* Content */}
+      <motion.div
+        key={activeTab}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="min-h-[400px]"
+      >
+        {activeTab === 'diplomas' ? (
+          <div className="space-y-6">
+            {profile.diplomas.map((diploma, index) => (
+              <motion.div
+                key={diploma.title}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-600 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex items-start gap-6">
+                  {/* Badge année intégré */}
+                  <div className="flex-shrink-0">
+                    <span className="inline-block text-lg font-bold text-white bg-blue-500 px-6 py-2 rounded-full shadow-lg border-2 border-white dark:border-gray-800">
+                      {diploma.year}
+                    </span>
+                  </div>
+                  
+                  {/* Contenu principal */}
+                  <div className="flex-1 space-y-3">
+                    {/* Titre */}
+                    <h5 className="text-xl font-bold text-gray-900 dark:text-white">
+                      {diploma.title}
+                    </h5>
+                    
+                    {/* Institution */}
+                    <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
+                      {diploma.institution}
+                    </p>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {diploma.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {profile.certifications.map((cert, index) => (
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-600 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex items-start gap-6">
+                  {/* Badge année intégré */}
+                  <div className="flex-shrink-0">
+                    <span className="inline-block text-lg font-bold text-white bg-green-500 px-6 py-2 rounded-full shadow-lg border-2 border-white dark:border-gray-800">
+                      {cert.year}
+                    </span>
+                  </div>
+                  
+                  {/* Contenu principal */}
+                  <div className="flex-1 space-y-3">
+                    {/* Titre */}
+                    <h5 className="text-xl font-bold text-gray-900 dark:text-white">
+                      {cert.title}
+                    </h5>
+                    
+                    {/* Institution */}
+                    <p className="text-lg font-semibold text-green-600 dark:text-green-400">
+                      {cert.institution}
+                    </p>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {cert.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 
