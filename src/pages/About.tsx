@@ -83,7 +83,11 @@ export default function About() {
       { icon: Code, label: "Développement Full-Stack", description: "Maîtrise complète des technologies front-end et back-end" },
       { icon: Zap, label: "Performance", description: "Optimisation et amélioration des performances applicatives" },
       { icon: Users, label: "Collaboration", description: "Travail d'équipe efficace et communication claire" },
-      { icon: Target, label: "Résolution de problèmes", description: "Approche analytique et solutions innovantes" }
+      { icon: Target, label: "Résolution de problèmes", description: "Approche analytique et solutions innovantes" },
+      { icon: Award, label: "Architecture Logicielle", description: "Conception d'architectures scalables et maintenables" },
+      { icon: MapPin, label: "DevOps & CI/CD", description: "Automatisation des déploiements et gestion d'infrastructure" },
+      { icon: Palette, label: "UX/UI Design", description: "Création d'interfaces intuitives et expériences utilisateur optimales" },
+      { icon: Code, label: "Sécurité Applicative", description: "Implémentation de bonnes pratiques de sécurité et protection des données" }
     ],
     
     timeline: [
