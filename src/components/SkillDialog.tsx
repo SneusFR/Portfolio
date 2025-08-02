@@ -91,18 +91,38 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
               duration: 0.4,
               ease: [0.4, 0, 0.2, 1]
             }}
-            className="fixed top-0 right-0 h-screen w-[500px] sm:w-[450px] bg-gradient-to-br from-white to-gray-50 border-l border-white/20 shadow-2xl z-50 backdrop-blur-md"
+            className="fixed top-0 right-0 h-screen w-full md:w-[500px] max-w-[90vw] bg-gradient-to-br from-white to-gray-50 border-l border-white/20 shadow-2xl z-50 backdrop-blur-md"
             style={{
               boxShadow: '-20px 0 60px rgba(0, 0, 0, 0.1), -10px 0 30px rgba(0, 0, 0, 0.05)'
             }}
           >
             {/* Header avec effet de couleur */}
             <div 
-              className="relative h-32 flex items-end p-6 overflow-hidden"
+              className="relative h-24 sm:h-32 flex items-end p-4 sm:p-6 overflow-hidden"
               style={{
                 background: `linear-gradient(135deg, ${moon.color}15, ${moon.color}05)`
               }}
             >
+              {/* Bouton de fermeture */}
+              <button
+                onClick={() => onOpenChange(false)}
+                className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white/90 transition-colors duration-200"
+                aria-label="Fermer"
+              >
+                <svg 
+                  className="w-4 h-4 text-gray-600" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M6 18L18 6M6 6l12 12" 
+                  />
+                </svg>
+              </button>
               {/* Effet de particules en arrière-plan - optimisé */}
               {showParticles && (
                 <div className="absolute inset-0 opacity-15">
@@ -137,9 +157,9 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
 
 
               {/* Titre et icône */}
-              <div className="flex items-center space-x-4 z-10">
+              <div className="flex items-center space-x-3 sm:space-x-4 z-10">
                 <motion.div 
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center shadow-lg"
                   style={{ backgroundColor: moon.color }}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -148,13 +168,13 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
                   <img 
                     src={moon.icon} 
                     alt={moon.label}
-                    className="w-6 h-6 filter brightness-0 invert"
+                    className="w-5 h-5 sm:w-6 sm:h-6 filter brightness-0 invert"
                   />
                 </motion.div>
                 
                 <div>
                   <motion.h2 
-                    className="text-xl font-bold text-gray-900"
+                    className="text-lg sm:text-xl font-bold text-gray-900"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
@@ -162,7 +182,7 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
                     {moon.label}
                   </motion.h2>
                   <motion.span 
-                    className="text-sm font-medium px-2 py-1 rounded-full text-white"
+                    className="text-xs sm:text-sm font-medium px-2 py-1 rounded-full text-white"
                     style={{ backgroundColor: moon.color }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -175,8 +195,8 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
             </div>
 
             {/* Contenu scrollable */}
-            <div className="flex-1 overflow-y-auto skill-dialog-scroll" style={{ maxHeight: 'calc(100vh - 128px)' }}>
-              <div className="p-6 space-y-8 pb-12">
+            <div className="flex-1 overflow-y-auto skill-dialog-scroll" style={{ maxHeight: 'calc(100vh - 96px)' }}>
+              <div className="p-4 sm:p-6 space-y-6 sm:space-y-8 pb-8 sm:pb-12">
                 {/* Expérience et Description */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -271,11 +291,11 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
                   <h3 className="section-title">
                     Compétences
                   </h3>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2 sm:gap-4">
                     {moon.skills.map((skill, index) => (
                       <motion.span
                         key={index}
-                        className={`px-4 py-1.5 text-sm font-semibold rounded-lg shadow-md border-2 cursor-default inline-block ${
+                        className={`px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold rounded-lg shadow-md border-2 cursor-default inline-block ${
                           isScrolling 
                             ? 'transition-none' 
                             : 'transition-all duration-300 hover:scale-105 hover:shadow-lg'

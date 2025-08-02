@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import { Html } from '@react-three/drei';
@@ -18,9 +18,22 @@ export function Moon({ moon, onMoonSelect, isSidebarOpen, isHovered: isHoveredFr
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const radius = rings[moon.ring];
   const angularVelocity = angularVelocities[moon.ring];
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint de Tailwind
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   useFrame((state) => {
     if (isSidebarOpen) return; // ← Arrêter l'animation quand la sidebar est ouverte
@@ -46,7 +59,7 @@ export function Moon({ moon, onMoonSelect, isSidebarOpen, isHovered: isHoveredFr
         }}
       >
         <motion.div
-          drag
+          drag={!isMobile}
           dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
           dragElastic={0.1}
           onDragStart={() => setIsDragging(true)}

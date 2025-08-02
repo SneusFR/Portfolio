@@ -11,6 +11,8 @@ interface SkillsSidebarProps {
   isDarkMode?: boolean;
   onSkillClick?: (skillId: string) => void;
   onSkillHover?: (skillId: string | null) => void;
+  isOpen?: boolean;
+  onToggle?: (isOpen: boolean) => void;
 }
 
 interface SkillCategory {
@@ -25,9 +27,9 @@ interface SkillCategory {
   }>;
 }
 
-export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover }: SkillsSidebarProps) {
+export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover, isOpen = false, onToggle }: SkillsSidebarProps) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['frontend']));
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const isCollapsed = !isOpen;
 
   // Organiser les compétences par catégorie
   const categories: SkillCategory[] = [
@@ -80,7 +82,7 @@ export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover }
   const toggleCategory = (categoryId: string) => {
     if (isCollapsed) {
       // Si la sidebar est fermée, l'ouvrir et développer cette catégorie
-      setIsCollapsed(false);
+      onToggle?.(true);
       setExpandedCategories(new Set([categoryId]));
     } else {
       // Si la sidebar est ouverte, toggle normal
@@ -99,7 +101,7 @@ export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover }
   };
 
   const handleCloseClick = () => {
-    setIsCollapsed(true);
+    onToggle?.(false);
   };
 
   return (
@@ -108,7 +110,7 @@ export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover }
       {!isCollapsed && (
         <div 
           className="sidebar-backdrop"
-          onClick={() => setIsCollapsed(true)}
+          onClick={() => onToggle?.(false)}
         />
       )}
 

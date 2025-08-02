@@ -139,7 +139,7 @@ export default function About() {
           <div className="relative flex gap-2">
             <button
               onClick={() => setActiveTab('diplomas')}
-              className={`relative flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group ${
+              className={`relative flex items-center gap-2 sm:gap-3 px-3 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-500 overflow-hidden group ${
                 activeTab === 'diplomas'
                   ? 'text-white'
                   : 'text-gray-600 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300'
@@ -166,7 +166,7 @@ export default function About() {
             
             <button
               onClick={() => setActiveTab('certifications')}
-              className={`relative flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group ${
+              className={`relative flex items-center gap-2 sm:gap-3 px-3 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-500 overflow-hidden group ${
                 activeTab === 'certifications'
                   ? 'text-white'
                   : 'text-gray-600 dark:text-gray-300 hover:text-green-400 dark:hover:text-green-300'

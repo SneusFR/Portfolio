@@ -112,8 +112,8 @@ export function Home({ isDarkMode }: HomeProps) {
             </div>
           </div>
           
-          {/* Modèle 3D - Côté droit */}
-          <div className="relative h-[500px] lg:h-[700px]">
+          {/* Modèle 3D - Côté droit - Caché sur mobile */}
+          <div className="hidden md:block relative h-[500px] lg:h-[700px]">
             <HeroComputer isDarkMode={isDarkMode} />
           </div>
         </div>
