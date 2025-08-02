@@ -167,12 +167,11 @@ export function Home({ isDarkMode }: HomeProps) {
               </span>
             </div>
             
-            <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight ${
+            <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              Projets
-              <br />
-              <span className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="block">Projets</span>
+              <span className="block mt-3 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
                 sélectionnés
               </span>
             </h2>
@@ -508,13 +507,38 @@ export function Home({ isDarkMode }: HomeProps) {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-block mb-6">
+              <span className={`px-4 py-2 rounded-full text-sm font-medium backdrop-blur-md border ${
+                isDarkMode 
+                  ? 'bg-white/5 border-white/10 text-gray-300' 
+                  : 'bg-black/5 border-black/10 text-gray-600'
+              }`}>
+                👨‍💻 À propos
+              </span>
+            </div>
+            
+            <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              Créateur d'expériences
+              <br />
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                numériques
+              </span>
+            </h2>
+            
+            <p className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}>
+              Passionné par l'innovation technologique,
+              <br className="hidden md:block" />
+              je transforme vos idées en solutions digitales performantes
+            </p>
+          </div>
+          
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className={`text-4xl md:text-5xl font-bold mb-8 ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
-              }`}>
-                Créateur d'expériences numériques
-              </h2>
               
               <div className="space-y-6">
                 <p className={`text-lg leading-relaxed ${
