@@ -189,11 +189,7 @@ export function Home({ isDarkMode }: HomeProps) {
             {/* Project placeholders - you can replace with real projects */}
             {[1, 2, 3].map((i) => (
               <div key={i} className="group relative">
-                <div className={`relative p-10 rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-105 hover:-translate-y-1 ${
-                  isDarkMode
-                    ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
-                    : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
-                }`}>
+              <div className="glass-panel relative p-10">
                   <div className="relative z-10">
                     {/* Project image */}
                     <div className="relative mb-8">
@@ -313,11 +309,7 @@ export function Home({ isDarkMode }: HomeProps) {
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Frontend Card - Simplified */}
             <div className="group relative">
-              <div className={`relative p-10 rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-105 hover:-translate-y-1 ${
-                isDarkMode
-                  ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
-                  : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
-              }`}>
+              <div className="glass-panel relative p-10">
                 <div className="relative z-10 text-center">
                   {/* Icon with simple animation */}
                   <div className="relative mb-8 flex justify-center">
@@ -372,11 +364,7 @@ export function Home({ isDarkMode }: HomeProps) {
 
             {/* Backend Card - Simplified */}
             <div className="group relative">
-              <div className={`relative p-10 rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-105 hover:-translate-y-1 ${
-                isDarkMode
-                  ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
-                  : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
-              }`}>
+              <div className="glass-panel relative p-10">
                 <div className="relative z-10 text-center">
                   {/* Icon with simple animation */}
                   <div className="relative mb-8 flex justify-center">
@@ -431,11 +419,7 @@ export function Home({ isDarkMode }: HomeProps) {
 
             {/* Database Card - Simplified */}
             <div className="group relative">
-              <div className={`relative p-10 rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-105 hover:-translate-y-1 ${
-                isDarkMode
-                  ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
-                  : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
-              }`}>
+              <div className="glass-panel relative p-10">
                 <div className="relative z-10 text-center">
                   {/* Icon with simple animation */}
                   <div className="relative mb-8 flex justify-center">

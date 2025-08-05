@@ -3992,3 +3992,67 @@ body.modal-open {
   opacity:1;
 }
 .dark .star-strip span{background:#475569;opacity:.4;}
+
+/* ====== NOUVEAU STYLE GLASSMORPHISM POUR LA HOME PAGE ====== */
+
+/* Nouveau style glassmorphism inspiré de css.glass */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) scale(1.02);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+/* Mode sombre pour le glass panel */
+.dark .glass-panel {
+  background: rgba(30, 41, 59, 0.37);
+  border: 1px solid rgba(71, 85, 105, 0.65);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .glass-panel:hover {
+  background: rgba(30, 41, 59, 0.45);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(71, 85, 105, 0.75);
+}
+
+/* Glass panel pour la page des projets */
+.glass-project-card {
+  background: rgba(255, 255, 255, 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-project-card:hover {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px) scale(1.02);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+/* Mode sombre pour les cartes de projet */
+.dark .glass-project-card {
+  background: rgba(30, 41, 59, 0.37);
+  border: 1px solid rgba(71, 85, 105, 0.65);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .glass-project-card:hover {
+  background: rgba(30, 41, 59, 0.45);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(71, 85, 105, 0.75);
+}

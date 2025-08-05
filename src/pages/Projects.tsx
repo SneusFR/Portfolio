@@ -279,12 +279,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') openModal(project);
                   }}
-                  className={`glass-edge relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer ${
-                    isDarkMode
-                      ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
-                      : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
-                  } shadow-2xl hover:shadow-3xl`}
-                  style={{ '--edge-color': `${project.categoryColor}99` } as React.CSSProperties}
+                  className="glass-project-card relative p-8 cursor-pointer"
                 >
                   {/* Badge de catégorie */}
                   <div className="flex items-center gap-3 mb-6">
