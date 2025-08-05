@@ -318,9 +318,9 @@ export function Home({ isDarkMode }: HomeProps) {
                   ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
                   : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
               }`}>
-                <div className="relative z-10">
+                <div className="relative z-10 text-center">
                   {/* Icon with simple animation */}
-                  <div className="relative mb-8">
+                  <div className="relative mb-8 flex justify-center">
                     <div className="relative w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-2xl">
                       <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -341,7 +341,7 @@ export function Home({ isDarkMode }: HomeProps) {
                   </p>
                   
                   {/* Tech badges */}
-                  <div className="flex flex-wrap gap-3 mb-8">
+                  <div className="flex flex-wrap gap-3 mb-8 justify-center">
                     {['React', 'TypeScript', 'Next.js', 'Tailwind CSS'].map((tech) => (
                       <span 
                         key={tech}
@@ -377,9 +377,9 @@ export function Home({ isDarkMode }: HomeProps) {
                   ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
                   : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
               }`}>
-                <div className="relative z-10">
+                <div className="relative z-10 text-center">
                   {/* Icon with simple animation */}
-                  <div className="relative mb-8">
+                  <div className="relative mb-8 flex justify-center">
                     <div className="relative w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-2xl">
                       <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
@@ -400,7 +400,7 @@ export function Home({ isDarkMode }: HomeProps) {
                   </p>
                   
                   {/* Tech badges */}
-                  <div className="flex flex-wrap gap-3 mb-8">
+                  <div className="flex flex-wrap gap-3 mb-8 justify-center">
                     {['Node.js', 'Python', 'Express', 'FastAPI'].map((tech) => (
                       <span 
                         key={tech}
@@ -436,9 +436,9 @@ export function Home({ isDarkMode }: HomeProps) {
                   ? 'bg-gray-900/40 border-gray-700/30 hover:bg-gray-900/60 hover:border-gray-600/50'
                   : 'bg-white/40 border-white/30 hover:bg-white/60 hover:border-white/50'
               }`}>
-                <div className="relative z-10">
+                <div className="relative z-10 text-center">
                   {/* Icon with simple animation */}
-                  <div className="relative mb-8">
+                  <div className="relative mb-8 flex justify-center">
                     <div className="relative w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-2xl">
                       <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21 3.582 4 8 4s8-1.79 8-4" />
@@ -459,7 +459,7 @@ export function Home({ isDarkMode }: HomeProps) {
                   </p>
                   
                   {/* Tech badges */}
-                  <div className="flex flex-wrap gap-3 mb-8">
+                  <div className="flex flex-wrap gap-3 mb-8 justify-center">
                     {['PostgreSQL', 'MongoDB', 'Redis', 'Prisma'].map((tech) => (
                       <span 
                         key={tech}
