@@ -74,7 +74,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
   return (
     <div className="min-h-screen relative">
       {/* Contenu principal */}
-      <div className="relative z-10 pt-24 pb-16 px-6">
+      <div className="relative z-10 pt-24 pb-16 px-6 safe-top safe-bottom">
         <div className="max-w-7xl mx-auto">
           {/* En-tête */}
           <div className="text-center">
@@ -83,7 +83,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
             </div>
 
               <h1
-                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-2 leading-tight ${
+                className={`h1-fluid font-bold mb-2 leading-tight ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -95,7 +95,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
               </h1>
 
             <p
-              className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mt-0 ${
+              className={`lead-fluid max-w-3xl mx-auto leading-relaxed mt-0 ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
               }`}
             >
@@ -107,7 +107,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
             {/* Barre de recherche et filtres */}
             <div className="flex flex-col items-center gap-4 mt-10">
               {/* Container principal avec searchbar et bouton filtre */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
                 {/* Barre de recherche glassmorphism */}
                 <div
                   className={`flex items-center gap-3 w-full max-w-md px-6 py-4 rounded-full backdrop-blur-lg border shadow-lg transition-all duration-300 ${
@@ -176,7 +176,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                 {/* Bouton filtre style navbar */}
                 <button
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
-                  className={`flex items-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 backdrop-blur-lg border shadow-lg hover:scale-105 ${
+                  className={`w-full md:w-auto justify-center flex items-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 backdrop-blur-lg border shadow-lg hover:scale-105 ${
                     isFilterOpen || selectedRings.length > 0
                       ? isDarkMode
                         ? 'bg-blue-500/20 border-blue-400/30 text-blue-300 shadow-blue-500/25'

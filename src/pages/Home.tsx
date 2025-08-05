@@ -17,7 +17,7 @@ export function Home({ isDarkMode }: HomeProps) {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       {/* Hero Section - Pinia Style avec modèle 3D */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden safe-top safe-bottom">
         {/* Background gradient */}
         <div className={`absolute inset-0 ${
           isDarkMode 
@@ -29,7 +29,7 @@ export function Home({ isDarkMode }: HomeProps) {
           {/* Contenu textuel - Style Pinia */}
           <div className="text-center lg:text-left">
             {/* Titre principal - Style Pinia */}
-            <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight ${
+            <h1 className={`h1-fluid font-bold mb-6 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -44,7 +44,7 @@ export function Home({ isDarkMode }: HomeProps) {
             </h1>
             
             {/* Sous-titre */}
-            <p className={`text-lg md:text-xl mb-8 max-w-2xl leading-relaxed ${
+            <p className={`lead-fluid mb-8 max-w-2xl leading-relaxed ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
             }`}>
               Des applications robustes, un rendu utilisateur exceptionnel.
