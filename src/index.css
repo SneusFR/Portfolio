@@ -4061,7 +4061,7 @@ body.modal-open {
 
 /* Glass panel pour le texte de description */
 .glass-text-panel {
-  background: rgba(255, 255, 255, 0.37);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -4072,7 +4072,7 @@ body.modal-open {
 }
 
 .glass-text-panel:hover {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
   border: 1px solid rgba(255, 255, 255, 0.75);
@@ -4080,20 +4080,20 @@ body.modal-open {
 
 /* Mode sombre pour le panel de texte */
 .dark .glass-text-panel {
-  background: rgba(30, 41, 59, 0.37);
+  background: rgba(30, 41, 59, 0.07);
   border: 1px solid rgba(71, 85, 105, 0.65);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .dark .glass-text-panel:hover {
-  background: rgba(30, 41, 59, 0.45);
+  background: rgba(30, 41, 59, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(71, 85, 105, 0.75);
 }
 
 /* Glass panel pour les technologies favorites */
 .glass-tech-panel {
-  background: rgba(255, 255, 255, 0.37);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -4105,7 +4105,7 @@ body.modal-open {
 }
 
 .glass-tech-panel:hover {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
   border: 1px solid rgba(255, 255, 255, 0.75);
@@ -4113,20 +4113,20 @@ body.modal-open {
 
 /* Mode sombre pour le panel de technologies */
 .dark .glass-tech-panel {
-  background: rgba(30, 41, 59, 0.37);
+  background: rgba(30, 41, 59, 0.07);
   border: 1px solid rgba(71, 85, 105, 0.65);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .dark .glass-tech-panel:hover {
-  background: rgba(30, 41, 59, 0.45);
+  background: rgba(30, 41, 59, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(71, 85, 105, 0.75);
 }
 
 /* Glass panel pour les statistiques */
 .glass-stats-panel {
-  background: rgba(255, 255, 255, 0.37);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -4137,7 +4137,7 @@ body.modal-open {
 }
 
 .glass-stats-panel:hover {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
   border: 1px solid rgba(255, 255, 255, 0.75);
@@ -4145,13 +4145,13 @@ body.modal-open {
 
 /* Mode sombre pour le panel de statistiques */
 .dark .glass-stats-panel {
-  background: rgba(30, 41, 59, 0.37);
+  background: rgba(30, 41, 59, 0.07);
   border: 1px solid rgba(71, 85, 105, 0.65);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .dark .glass-stats-panel:hover {
-  background: rgba(30, 41, 59, 0.45);
+  background: rgba(30, 41, 59, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(71, 85, 105, 0.75);
 }

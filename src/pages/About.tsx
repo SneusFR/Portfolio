@@ -431,7 +431,7 @@ export default function About() {
                   transition={{ delay: 0.4 + index * 0.1 }}
                   className="flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-r from-white/50 to-transparent dark:from-gray-700/50 hover:from-white/70 dark:hover:from-gray-700/70 transition-all duration-300"
                 >
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center flex-shrink-0">
                     <skill.icon size={20} />
                   </div>
                   <div>
