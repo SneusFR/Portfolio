@@ -14,6 +14,70 @@ import {
   Shield
 } from "lucide-react";
 
+// Composant pour les compétences logicielles - Défini en dehors pour éviter les re-renders
+const SoftwareSkills = ({ skills }: { skills: any[] }) => (
+  <div className="space-y-6">
+    {skills.map((skill, index) => (
+      <motion.div
+        key={skill.name}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1 }}
+        className="relative w-full"
+      >
+        <div className="flex justify-between items-center mb-3">
+          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+            {skill.name}
+          </h4>
+          <span className="text-sm font-bold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+            {skill.level}%
+          </span>
+        </div>
+        
+        {/* Labels des niveaux */}
+        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+          <span>Débutant</span>
+          <span>Intermédiaire</span>
+          <span>Avancé</span>
+          <span>Expert</span>
+        </div>
+        
+        <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 shadow-inner">
+          {/* Séparations visuelles */}
+          <div className="absolute inset-0 flex items-center">
+            {/* Séparation à 25% */}
+            <div className="absolute left-[25%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
+            {/* Séparation à 50% */}
+            <div className="absolute left-[50%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
+            {/* Séparation à 75% */}
+            <div className="absolute left-[75%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
+          </div>
+          
+          <motion.div
+            className="h-3 rounded-full shadow-sm relative z-10"
+            style={{ 
+              backgroundColor: skill.color,
+              boxShadow: `0 2px 8px ${skill.color}40`
+            }}
+            initial={{ width: 0 }}
+            animate={{ width: `${skill.level}%` }}
+            transition={{ delay: 0.6 + index * 0.2, duration: 1.5, ease: 'easeOut' }}
+          />
+        </div>
+        
+        {/* Marqueurs de pourcentage */}
+        <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1">
+          <span>0%</span>
+          <span>25%</span>
+          <span>50%</span>
+          <span>75%</span>
+          <span>100%</span>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+);
+
 export default function About() {
   const [activeTab, setActiveTab] = useState<'diplomas' | 'certifications'>('diplomas');
   // Données du profil
@@ -130,66 +194,32 @@ export default function About() {
   // Composant pour les diplômes et certifications avec switch
   const DiplomasAndCertifications = () => (
     <div className="space-y-6">
-      {/* Switch Toggle - Ultra Transparent Glassmorphism */}
+      {/* Switch Toggle - Style Glassmorphism CSS.glass */}
       <div className="flex justify-center mb-12">
-        <div className="relative backdrop-blur-xl bg-white/02 dark:bg-black/05 border border-white/08 dark:border-white/05 rounded-3xl p-2">
-          {/* Subtle background glow effect */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/05 via-purple-500/05 to-green-500/05 blur-xl opacity-30"></div>
-          
-          <div className="relative flex gap-2">
-            <button
-              onClick={() => setActiveTab('diplomas')}
-              className={`relative flex items-center gap-2 sm:gap-3 px-3 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-500 overflow-hidden group ${
-                activeTab === 'diplomas'
-                  ? 'text-white'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300'
-              }`}
-            >
-              {/* Active background - ultra transparent */}
-              {activeTab === 'diplomas' && (
-                <div className="absolute inset-0 backdrop-blur-md bg-blue-500/15 dark:bg-blue-500/10 rounded-2xl border border-blue-500/20 dark:border-blue-500/15">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/08 to-blue-600/08 rounded-2xl"></div>
-                </div>
-              )}
+        <div className="relative">
+          {/* Container glassmorphism avec le style css.glass - Version 2 */}
+          <div className="glass-toggle-container">
+            <div className="relative flex gap-1">
+              <button
+                onClick={() => setActiveTab('diplomas')}
+                className={`glass-toggle-btn ${
+                  activeTab === 'diplomas' ? 'active' : ''
+                }`}
+              >
+                <GraduationCap size={20} className="flex-shrink-0" />
+                <span className="hidden sm:block">Diplômes</span>
+              </button>
               
-              {/* Hover effect - très subtil */}
-              <div className="absolute inset-0 backdrop-blur-sm bg-white/02 dark:bg-white/02 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <GraduationCap size={24} className="relative z-10" />
-              <span className="relative z-10">Diplômes</span>
-              
-              {/* Glow effect for active state - plus subtil */}
-              {activeTab === 'diplomas' && (
-                <div className="absolute inset-0 rounded-2xl bg-blue-500/08 blur-lg scale-110 opacity-40"></div>
-              )}
-            </button>
-            
-            <button
-              onClick={() => setActiveTab('certifications')}
-              className={`relative flex items-center gap-2 sm:gap-3 px-3 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-500 overflow-hidden group ${
-                activeTab === 'certifications'
-                  ? 'text-white'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-green-400 dark:hover:text-green-300'
-              }`}
-            >
-              {/* Active background - ultra transparent */}
-              {activeTab === 'certifications' && (
-                <div className="absolute inset-0 backdrop-blur-md bg-green-500/15 dark:bg-green-500/10 rounded-2xl border border-green-500/20 dark:border-green-500/15">
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400/08 to-green-600/08 rounded-2xl"></div>
-                </div>
-              )}
-              
-              {/* Hover effect - très subtil */}
-              <div className="absolute inset-0 backdrop-blur-sm bg-white/02 dark:bg-white/02 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <Shield size={24} className="relative z-10" />
-              <span className="relative z-10">Certifications</span>
-              
-              {/* Glow effect for active state - plus subtil */}
-              {activeTab === 'certifications' && (
-                <div className="absolute inset-0 rounded-2xl bg-green-500/08 blur-lg scale-110 opacity-40"></div>
-              )}
-            </button>
+              <button
+                onClick={() => setActiveTab('certifications')}
+                className={`glass-toggle-btn ${
+                  activeTab === 'certifications' ? 'active' : ''
+                }`}
+              >
+                <Shield size={20} className="flex-shrink-0" />
+                <span className="hidden sm:block">Certifications</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -285,69 +315,6 @@ export default function About() {
     </div>
   );
 
-  // Composant pour les compétences logicielles
-  const SoftwareSkills = () => (
-    <div className="space-y-6">
-      {profile.softwareSkills.map((skill, index) => (
-        <motion.div
-          key={skill.name}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
-          className="relative w-full"
-        >
-          <div className="flex justify-between items-center mb-3">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {skill.name}
-            </h4>
-            <span className="text-sm font-bold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-              {skill.level}%
-            </span>
-          </div>
-          
-          {/* Labels des niveaux */}
-          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
-            <span>Débutant</span>
-            <span>Intermédiaire</span>
-            <span>Avancé</span>
-            <span>Expert</span>
-          </div>
-          
-          <div className="relative w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 shadow-inner">
-            {/* Séparations visuelles */}
-            <div className="absolute inset-0 flex items-center">
-              {/* Séparation à 25% */}
-              <div className="absolute left-[25%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
-              {/* Séparation à 50% */}
-              <div className="absolute left-[50%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
-              {/* Séparation à 75% */}
-              <div className="absolute left-[75%] w-0.5 h-3 bg-white/60 dark:bg-gray-600/60 rounded-full"></div>
-            </div>
-            
-            <motion.div
-              className="h-3 rounded-full shadow-sm relative z-10"
-              style={{ 
-                backgroundColor: skill.color,
-                boxShadow: `0 2px 8px ${skill.color}40`
-              }}
-              initial={{ width: 0 }}
-              animate={{ width: `${skill.level}%` }}
-              transition={{ delay: 0.6 + index * 0.2, duration: 1.5, ease: 'easeOut' }}
-            />
-          </div>
-          
-          {/* Marqueurs de pourcentage */}
-          <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1">
-            <span>0%</span>
-            <span>25%</span>
-            <span>50%</span>
-            <span>75%</span>
-            <span>100%</span>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4">
@@ -458,7 +425,7 @@ export default function About() {
               <Code className="text-green-600" />
               Technologies Maîtrisées
             </h3>
-            <SoftwareSkills />
+            <SoftwareSkills skills={profile.softwareSkills} />
           </motion.div>
         </div>
 

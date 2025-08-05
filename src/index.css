@@ -1374,7 +1374,7 @@ body.skills-page {
 .nav-glass-link:hover{background:rgba(255,255,255,0.14);color:#fff;transform:translateY(-1px);}
 .is-light .nav-glass-link:hover{background:rgba(255,255,255,0.8);color:#0f172a;}
 .nav-glass-link.active{background:rgba(255,255,255,0.28);color:#fff;}
-.is-light .nav-glass-link.active{background:#fff;color:#0f172a;}
+.is-light .nav-glass-link.active{background:rgba(59, 130, 246, 0.15);color:#1d4ed8;border:1px solid rgba(59, 130, 246, 0.3);}
 
 /* Styles spécifiques pour le bouton dark mode - indépendants du scroll */
 .nav-glass-link.dark-mode-toggle {
@@ -4154,4 +4154,109 @@ body.modal-open {
   background: rgba(30, 41, 59, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(71, 85, 105, 0.75);
+}
+
+/* ====== STYLES GLASSMORPHISM POUR LES BOUTONS DIPLOMES/CERTIFICATIONS ====== */
+
+/* Container glassmorphism avec le style css.glass - Plus sombre en mode dark */
+.glass-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 16px;
+  
+  /* Mode sombre par défaut - Plus sombre */
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mode clair pour le container */
+html:not(.dark) .glass-toggle-container {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Boutons glassmorphism - Plus sombres en mode dark */
+.glass-toggle-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* État inactif - Plus sombre */
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive padding pour mobile */
+@media (max-width: 640px) {
+  .glass-toggle-btn {
+    padding: 0.75rem 1rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    justify-content: center;
+  }
+}
+
+/* État hover - Plus sombre */
+.glass-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-1px);
+}
+
+/* État actif - Fond noir avec texte blanc */
+.glass-toggle-btn.active {
+  background: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Mode clair pour les boutons */
+html:not(.dark) .glass-toggle-btn {
+  background: transparent;
+  color: rgba(30, 41, 59, 0.7);
+}
+
+html:not(.dark) .glass-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: rgba(30, 41, 59, 0.9);
+}
+
+html:not(.dark) .glass-toggle-btn.active {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(15, 23, 42, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Icônes flexibles */
+.glass-toggle-btn .flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* Texte masqué sur mobile */
+@media (max-width: 640px) {
+  .glass-toggle-btn span.hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .glass-toggle-btn span.sm\:block {
+    display: block;
+  }
 }
