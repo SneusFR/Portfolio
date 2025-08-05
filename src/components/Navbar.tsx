@@ -118,32 +118,69 @@ export function Navbar({
               );
             }
           })}
+          
+          {/* Dark Mode Toggle - Intégré dans la navbar sur mobile uniquement */}
+          <button
+            onClick={() => onDarkModeToggle?.(!isDarkMode)}
+            className="nav-glass-link dark-mode-toggle md:hidden"
+            aria-label={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
+          >
+            <span className="nav-icon">
+              {isDarkMode ? (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+              ) : (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </span>
+          </button>
         </div>
 
-        {/* Dark Mode Toggle - Responsive positioning */}
-        <div className="navbar-actions-reflect absolute right-6 md:right-6">
+        {/* Dark Mode Toggle - Position desktop (md et plus) */}
+        <div className="navbar-actions-reflect absolute right-6 md:right-6 hidden md:block">
           <button
             onClick={() => onDarkModeToggle?.(!isDarkMode)}
             className={`
               relative flex items-center justify-center
-              w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full
+              w-10 h-10 rounded-full
               transition-all duration-300 ease-in-out
               ${isDarkMode 
-                ? 'bg-gray-700/50 hover:bg-gray-600/50 text-gray-300' 
-                : 'bg-gray-100/50 hover:bg-gray-200/50 text-gray-600'
+                ? 'bg-white/08 hover:bg-white/15 text-white/90 border border-white/10' 
+                : 'bg-gray-100/50 hover:bg-gray-200/50 text-gray-600 border border-gray-200/30'
               }
               hover:scale-105
               focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-opacity-50
-              backdrop-blur-sm
+              backdrop-blur-md
               shadow-sm hover:shadow-md
             `}
             aria-label={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
           >
             {isDarkMode ? (
               <svg
-                width="16"
-                height="16"
-                className="sm:w-[17px] sm:h-[17px] md:w-[18px] md:h-[18px]"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -156,9 +193,8 @@ export function Navbar({
               </svg>
             ) : (
               <svg
-                width="16"
-                height="16"
-                className="sm:w-[17px] sm:h-[17px] md:w-[18px] md:h-[18px]"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

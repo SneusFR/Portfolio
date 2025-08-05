@@ -1376,6 +1376,27 @@ body.skills-page {
 .nav-glass-link.active{background:rgba(255,255,255,0.28);color:#fff;}
 .is-light .nav-glass-link.active{background:#fff;color:#0f172a;}
 
+/* Styles spécifiques pour le bouton dark mode - indépendants du scroll */
+.nav-glass-link.dark-mode-toggle {
+  background: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
+}
+
+.nav-glass-link.dark-mode-toggle:hover {
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+
+.is-light .nav-glass-link.dark-mode-toggle {
+  background: rgba(0,0,0,0.05) !important;
+  color: rgba(0,0,0,0.7) !important;
+}
+
+.is-light .nav-glass-link.dark-mode-toggle:hover {
+  background: rgba(0,0,0,0.1) !important;
+  color: rgba(0,0,0,0.9) !important;
+}
+
 /* Actions */
 .navbar-actions-reflect{display:none;align-items:center;gap:1rem;}
 @media (min-width:768px){.navbar-actions-reflect{display:flex;}}
