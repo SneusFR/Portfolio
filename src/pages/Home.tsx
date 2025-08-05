@@ -190,7 +190,7 @@ export function Home({ isDarkMode }: HomeProps) {
             {[1, 2, 3].map((i) => (
               <div key={i} className="group relative">
               <div className="glass-panel relative p-10">
-                  <div className="relative z-10">
+                  <div className="relative z-10 text-center">
                     {/* Project image */}
                     <div className="relative mb-8">
                       <div className={`w-full h-48 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-2xl overflow-hidden ${
@@ -217,7 +217,7 @@ export function Home({ isDarkMode }: HomeProps) {
                     </p>
                     
                     {/* Tech badges */}
-                    <div className="flex flex-wrap gap-3 mb-8">
+                    <div className="flex flex-wrap gap-3 mb-8 justify-center">
                       {['React', 'TypeScript', 'Tailwind'].map((tech) => (
                         <span 
                           key={tech}
@@ -521,25 +521,27 @@ export function Home({ isDarkMode }: HomeProps) {
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              
-              <div className="space-y-6">
-                <p className={`text-lg leading-relaxed ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                  Passionné par l'innovation technologique, je transforme des idées complexes en solutions élégantes et performantes. Mon approche combine créativité artistique et rigueur technique.
-                </p>
-                
-                <p className={`text-lg leading-relaxed ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                  Spécialisé dans les technologies web modernes, je crée des expériences utilisateur immersives qui repoussent les limites du possible.
-                </p>
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-8">
+              {/* Panel de description */}
+              <div className={`glass-text-panel ${isDarkMode ? 'dark' : ''}`}>
+                <div className="space-y-6">
+                  <p className={`text-lg leading-relaxed ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
+                    Passionné par l'innovation technologique, je transforme des idées complexes en solutions élégantes et performantes. Mon approche combine créativité artistique et rigueur technique.
+                  </p>
+                  
+                  <p className={`text-lg leading-relaxed ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
+                    Spécialisé dans les technologies web modernes, je crée des expériences utilisateur immersives qui repoussent les limites du possible.
+                  </p>
+                </div>
               </div>
               
-              {/* Tech stack */}
-              <div className="mt-8">
+              {/* Panel des technologies */}
+              <div className={`glass-tech-panel ${isDarkMode ? 'dark' : ''}`}>
                 <h3 className={`text-lg font-semibold mb-4 ${
                   isDarkMode ? 'text-gray-200' : 'text-gray-800'
                 }`}>
@@ -595,12 +597,8 @@ export function Home({ isDarkMode }: HomeProps) {
               </div>
             </div>
             
-            {/* Stats */}
-            <div className={`p-8 rounded-2xl backdrop-blur-sm border ${
-              isDarkMode
-                ? 'bg-gray-800/50 border-gray-700/50'
-                : 'bg-white/70 border-white/60'
-            }`}>
+            {/* Panel des statistiques */}
+            <div className={`glass-stats-panel ${isDarkMode ? 'dark' : ''}`}>
               <h3 className={`text-2xl font-bold mb-8 text-center ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
