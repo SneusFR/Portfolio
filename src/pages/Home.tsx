@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HeroComputer } from '../components/HeroComputer';
 import { moons } from '../data';
-import tetrisUrl from '../assets/tetris.png';
 
 interface HomeProps {
   isDarkMode: boolean;

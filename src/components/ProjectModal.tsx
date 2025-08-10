@@ -53,37 +53,8 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
   const specs = project.technicalSpecs || defaultSpecs;
 
   // Image par défaut basée sur la catégorie
-  const getDefaultImage = (category: string) => {
-    const images = {
-      'Jeux-vidéo': 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=400&fit=crop',
-      'Football': 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop',
-      'Piano': 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&h=400&fit=crop',
-      'Node.js': 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=400&fit=crop',
-      'UI/UX': 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop',
-      'Animation': 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=400&fit=crop',
-      'Vue.js': 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop',
-      'Angular': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop',
-      'Svelte': 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&h=400&fit=crop',
-      'Next.js': 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=400&fit=crop',
-      'Tailwind CSS': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
-      'React': 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop',
-      'Python': 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=400&fit=crop',
-      'Java': 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop',
-      'C#': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop',
-      'PHP': 'https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=800&h=400&fit=crop',
-      'Go': 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop',
-      'Rust': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop',
-      'PostgreSQL': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=400&fit=crop',
-      'MySQL': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=400&fit=crop',
-      'MongoDB': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
-      'Redis': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
-      'Elasticsearch': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
-      'SQLite': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=400&fit=crop'
-    };
-    return images[category as keyof typeof images] || 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop';
-  };
 
-  const projectImage = project.image || getDefaultImage(project.category);
+
   const demoUrl = project.demoUrl || `https://demo-${project.name.toLowerCase().replace(/\s+/g, '-')}.vercel.app`;
 
   // Images du carrousel spécifiques à chaque projet
