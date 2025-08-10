@@ -22,6 +22,8 @@ interface ProjectModalProps {
 
 export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectModalProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageEnlarged, setIsImageEnlarged] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,6 +86,64 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
   const projectImage = project.image || getDefaultImage(project.category);
   const demoUrl = project.demoUrl || `https://demo-${project.name.toLowerCase().replace(/\s+/g, '-')}.vercel.app`;
 
+  // Images du carrousel spécifiques à chaque projet
+  const getCarouselImages = (projectName: string): string[] => {
+    switch (projectName.toLowerCase()) {
+      case 'tetris revolution':
+        return [
+          '/src/assets/tetrismin1.png',
+          '/src/assets/tetrismin2.png',
+          '/src/assets/tetrismin3.png',
+          '/src/assets/tetrismin4.png',
+          '/src/assets/tetrismin5.png',
+        ];
+      case 'mailflow':
+        return [
+          '/src/assets/MailFlow.png',
+          '/src/assets/MailFlow.png', // Pour le moment on répète la même image
+          '/src/assets/MailFlow.png',
+          '/src/assets/MailFlow.png',
+          '/src/assets/MailFlow.png',
+        ];
+      case 'isfce cafet':
+        return [
+          '/src/assets/Cafetmenu.jpg',
+          '/src/assets/Cafetmenu.jpg', // Pour le moment on répète la même image
+          '/src/assets/Cafetmenu.jpg',
+          '/src/assets/Cafetmenu.jpg',
+          '/src/assets/Cafetmenu.jpg',
+        ];
+      default:
+        // Images par défaut pour les autres projets
+        return [
+          '/src/assets/tetris.png',
+          '/src/assets/MailFlow.png',
+          '/src/assets/Cafetmenu.jpg',
+          '/src/assets/tetris.png',
+          '/src/assets/MailFlow.png',
+        ];
+    }
+  };
+
+  const carouselImages = getCarouselImages(project.name);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  };
+
+  const openEnlargedImage = () => {
+    setIsImageEnlarged(true);
+  };
+
+  const closeEnlargedImage = () => {
+    setIsImageEnlarged(false);
+  };
+
+
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4" style={{ zIndex: 9999 }}>
       {/* Backdrop avec glassmorphing */}
@@ -120,52 +180,109 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           </svg>
         </button>
 
-        {/* Image d'illustration */}
-        <div className="relative h-64 md:h-80 overflow-hidden rounded-t-3xl">
-          <img
-            src={projectImage}
-            alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          
-          {/* Badge de catégorie sur l'image */}
-          <div className="absolute top-6 left-6 flex items-center gap-3">
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20"
-              style={{ backgroundColor: `${project.categoryColor}20` }}
-            >
-              <img
-                src={project.categoryIcon}
-                alt={project.category}
-                className="w-6 h-6 object-contain"
-              />
-            </div>
-            <span
-              className="text-sm font-medium px-4 py-2 rounded-full backdrop-blur-sm border border-white/20 text-white"
-              style={{
-                backgroundColor: `${project.categoryColor}20`,
-              }}
-            >
-              {project.category}
-            </span>
-          </div>
-        </div>
 
         {/* Contenu principal */}
         <div className="p-8">
           {/* En-tête du projet */}
           <div className="mb-8">
             <h2
-              className={`text-3xl md:text-4xl font-bold mb-4 ${
+              className={`text-3xl md:text-4xl font-bold mb-4 text-center ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
             >
               {project.name}
             </h2>
             
+            {/* Carrousel de photos */}
+            <div className="mb-6">
+              {/* Image principale */}
+              <div className="relative mb-4">
+                <div
+                  className={`relative w-full max-w-2xl mx-auto h-80 rounded-2xl overflow-hidden backdrop-blur-sm border transition-all duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-800/30 border-gray-700/30'
+                      : 'bg-white/50 border-white/30'
+                  }`}
+                >
+                  <img
+                    src={carouselImages[currentImageIndex]}
+                    alt={`${project.name} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-700 cursor-pointer hover:scale-105"
+                    onClick={openEnlargedImage}
+                  />
+                </div>
+
+                {/* Boutons de navigation */}
+                <button
+                  onClick={prevImage}
+                  className={`absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
+                    isDarkMode
+                      ? 'bg-gray-800/60 border-gray-600/30 text-white hover:bg-gray-700/60'
+                      : 'bg-white/60 border-gray-200/50 text-gray-900 hover:bg-white/80'
+                  }`}
+                >
+                  <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                <button
+                  onClick={nextImage}
+                  className={`absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
+                    isDarkMode
+                      ? 'bg-gray-800/60 border-gray-600/30 text-white hover:bg-gray-700/60'
+                      : 'bg-white/60 border-gray-200/50 text-gray-900 hover:bg-white/80'
+                  }`}
+                >
+                  <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Miniatures */}
+              <div className="flex gap-3 overflow-x-auto pb-2 justify-center">
+                {carouselImages.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 hover:scale-105 ${
+                      index === currentImageIndex
+                        ? 'border-blue-500 ring-2 ring-blue-500/30'
+                        : isDarkMode
+                        ? 'border-gray-600/30 hover:border-gray-500/50'
+                        : 'border-gray-200/50 hover:border-gray-300/70'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`Miniature ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              {/* Indicateur de position */}
+              <div className="flex justify-center mt-4 gap-2">
+                {carouselImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex
+                        ? 'bg-blue-500 w-6'
+                        : isDarkMode
+                        ? 'bg-gray-600 hover:bg-gray-500'
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
             <p
-              className={`text-lg leading-relaxed mb-6 ${
+              className={`text-lg leading-relaxed mb-6 text-center ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
               }`}
             >
@@ -173,7 +290,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
             </p>
 
             {/* Technologies */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6 justify-center">
               {project.technologies.map(tech => (
                 <span
                   key={tech}
@@ -192,7 +309,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           {/* Fiche technique */}
           <div className="mb-8">
             <h3
-              className={`text-2xl font-bold mb-6 ${
+              className={`text-2xl font-bold mb-6 text-center ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
             >
@@ -231,6 +348,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
             </div>
           </div>
 
+
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -268,6 +386,118 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           </div>
         </div>
       </div>
+
+      {/* Lightbox d'image agrandie */}
+      {isImageEnlarged && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm"
+          style={{ zIndex: 10001 }}
+          onClick={closeEnlargedImage}
+        >
+          {/* Carte lightbox */}
+          <div 
+            className={`relative w-full max-w-4xl max-h-[80vh] rounded-2xl backdrop-blur-xl border shadow-2xl transition-all duration-300 ${
+              isDarkMode
+                ? 'bg-gray-900/90 border-gray-700/50'
+                : 'bg-white/90 border-white/50'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Bouton de fermeture */}
+            <button
+              onClick={closeEnlargedImage}
+              className={`absolute top-4 right-4 z-10 w-10 h-10 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
+                isDarkMode
+                  ? 'bg-gray-800/60 border-gray-600/30 text-white hover:bg-gray-700/60'
+                  : 'bg-white/60 border-gray-200/50 text-gray-900 hover:bg-white/80'
+              }`}
+            >
+              <svg className="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Contenu de la lightbox */}
+            <div className="p-6">
+              {/* En-tête */}
+              <div className="mb-4">
+                <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  {project.name}
+                </h3>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Image {currentImageIndex + 1} sur {carouselImages.length}
+                </p>
+              </div>
+
+              {/* Image agrandie avec meilleur affichage */}
+              <div className="relative mb-4">
+                <div className={`w-full max-h-[65vh] rounded-xl overflow-hidden flex items-center justify-center ${isDarkMode ? 'bg-gray-800/50' : 'bg-gray-100/50'}`}>
+                  <img
+                    src={carouselImages[currentImageIndex]}
+                    alt={`${project.name} - Image ${currentImageIndex + 1} (agrandie)`}
+                    className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+                    style={{ 
+                      maxHeight: '65vh',
+                      maxWidth: '100%',
+                      height: 'auto',
+                      width: 'auto'
+                    }}
+                  />
+                </div>
+
+                {/* Boutons de navigation dans la lightbox */}
+                {carouselImages.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className={`absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
+                        isDarkMode
+                          ? 'bg-gray-800/60 border-gray-600/30 text-white hover:bg-gray-700/60'
+                          : 'bg-white/60 border-gray-200/50 text-gray-900 hover:bg-white/80'
+                      }`}
+                    >
+                      <svg className="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    <button
+                      onClick={nextImage}
+                      className={`absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
+                        isDarkMode
+                          ? 'bg-gray-800/60 border-gray-600/30 text-white hover:bg-gray-700/60'
+                          : 'bg-white/60 border-gray-200/50 text-gray-900 hover:bg-white/80'
+                      }`}
+                    >
+                      <svg className="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Indicateurs de position dans la lightbox */}
+              {carouselImages.length > 1 && (
+                <div className="flex justify-center gap-2">
+                  {carouselImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentImageIndex
+                          ? isDarkMode ? 'bg-white w-6' : 'bg-gray-900 w-6'
+                          : isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

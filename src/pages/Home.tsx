@@ -187,7 +187,7 @@ export function Home({ isDarkMode }: HomeProps) {
           </div>
           
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Récupérer les projets avec Tetris Revolution en premier et MailFlow en deuxième */}
+            {/* Récupérer les projets avec Tetris Revolution en premier, MailFlow en deuxième et Isfce cafet en troisième */}
             {(() => {
               const allProjects = moons.flatMap(moon => 
                 moon.detailedProjects.map(project => ({
@@ -200,17 +200,13 @@ export function Home({ isDarkMode }: HomeProps) {
               // Trouver les projets spécifiques
               const tetrisProject = allProjects.find(p => p.name === "Tetris Revolution");
               const mailflowProject = allProjects.find(p => p.name === "MailFlow");
-              const otherProjects = allProjects.filter(p => p.name !== "Tetris Revolution" && p.name !== "MailFlow");
+              const isfceCafetProject = allProjects.find(p => p.name === "Isfce cafet");
               
               // Créer la liste des projets mis en avant dans l'ordre souhaité
               const featuredProjects = [];
               if (tetrisProject) featuredProjects.push(tetrisProject);
               if (mailflowProject) featuredProjects.push(mailflowProject);
-              
-              // Compléter avec d'autres projets si nécessaire
-              const remainingSlots = 3 - featuredProjects.length;
-              for (let i = 0; i < remainingSlots && i < otherProjects.length; i++) {
-              }
+              if (isfceCafetProject) featuredProjects.push(isfceCafetProject);
                 
               return featuredProjects;
             })().map((project, i) => (
