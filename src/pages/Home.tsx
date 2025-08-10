@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { HeroComputer } from '../components/HeroComputer';
-import mailflowLogo from '../assets/mailflowlogo.png';
+import { moons } from '../data';
+import tetrisUrl from '../assets/tetris.png';
 
 interface HomeProps {
   isDarkMode: boolean;
@@ -186,52 +187,82 @@ export function Home({ isDarkMode }: HomeProps) {
           </div>
           
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Project placeholders - you can replace with real projects */}
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="group relative">
-              <div className="glass-panel relative p-10">
+            {/* Récupérer les projets avec Tetris Revolution en premier et MailFlow en deuxième */}
+            {(() => {
+              const allProjects = moons.flatMap(moon => 
+                moon.detailedProjects.map(project => ({
+                  ...project,
+                  categoryColor: moon.color,
+                  categoryIcon: moon.icon
+                }))
+              );
+              
+              // Trouver les projets spécifiques
+              const tetrisProject = allProjects.find(p => p.name === "Tetris Revolution");
+              const mailflowProject = allProjects.find(p => p.name === "MailFlow");
+              const otherProjects = allProjects.filter(p => p.name !== "Tetris Revolution" && p.name !== "MailFlow");
+              
+              // Créer la liste des projets mis en avant dans l'ordre souhaité
+              const featuredProjects = [];
+              if (tetrisProject) featuredProjects.push(tetrisProject);
+              if (mailflowProject) featuredProjects.push(mailflowProject);
+              
+              // Compléter avec d'autres projets si nécessaire
+              const remainingSlots = 3 - featuredProjects.length;
+              for (let i = 0; i < remainingSlots && i < otherProjects.length; i++) {
+              }
+                
+              return featuredProjects;
+            })().map((project, i) => (
+              <div key={`${project.name}-${i}`} className="group relative">
+                <div className="glass-panel relative p-10">
                   <div className="relative z-10 text-center">
                     {/* Project image */}
                     <div className="relative mb-8">
                       <div className={`w-full h-48 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-2xl overflow-hidden ${
                         isDarkMode ? 'bg-gray-800/50' : 'bg-white/80'
                       }`}>
-                        <img 
-                          src={mailflowLogo} 
-                          alt={`Projet ${i}`}
-                          className="w-full h-full object-contain p-6"
-                        />
+                        {project.image ? (
+                          <img 
+                            src={project.image} 
+                            alt={project.name}
+                            className="w-full h-full object-contain p-6"
+                          />
+                        ) : (
+                          <img 
+                            src={project.categoryIcon} 
+                            alt={project.name}
+                            className="w-16 h-16 object-contain"
+                          />
+                        )}
                       </div>
                     </div>
                     
                     <h3 className={`text-3xl font-bold mb-6 ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
                     }`}>
-                      Projet Example {i}
+                      {project.name}
                     </h3>
                     
                     <p className={`text-lg mb-8 leading-relaxed ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-600'
                     }`}>
-                      Description détaillée du projet et des technologies utilisées pour sa réalisation.
+                      {project.description.length > 120 
+                        ? `${project.description.substring(0, 120)}...` 
+                        : project.description}
                     </p>
                     
                     {/* Tech badges */}
                     <div className="flex flex-wrap gap-3 mb-8 justify-center">
-                      {['React', 'TypeScript', 'Tailwind'].map((tech) => (
+                      {project.technologies.slice(0, 3).map((tech) => (
                         <span 
                           key={tech}
-                          className={`px-4 py-2 text-sm font-medium rounded-full backdrop-blur-sm border ${
-                            i === 1 ? (isDarkMode 
-                              ? 'bg-blue-500/10 border-blue-500/20 text-blue-300' 
-                              : 'bg-blue-100/70 border-blue-200/50 text-blue-700') :
-                            i === 2 ? (isDarkMode 
-                              ? 'bg-green-500/10 border-green-500/20 text-green-300' 
-                              : 'bg-green-100/70 border-green-200/50 text-green-700') :
-                            (isDarkMode 
-                              ? 'bg-purple-500/10 border-purple-500/20 text-purple-300' 
-                              : 'bg-purple-100/70 border-purple-200/50 text-purple-700')
-                          }`}
+                          className={`px-4 py-2 text-sm font-medium rounded-full backdrop-blur-sm border`}
+                          style={{
+                            backgroundColor: `${project.categoryColor}15`,
+                            borderColor: `${project.categoryColor}35`,
+                            color: project.categoryColor
+                          }}
                         >
                           {tech}
                         </span>
@@ -239,19 +270,16 @@ export function Home({ isDarkMode }: HomeProps) {
                     </div>
                     
                     {/* CTA */}
-                    <a
-                      href="#"
-                      className={`inline-flex items-center font-semibold transition-colors duration-300 ${
-                        i === 1 ? 'text-blue-600 hover:text-blue-700' :
-                        i === 2 ? 'text-green-600 hover:text-green-700' :
-                        'text-purple-600 hover:text-purple-700'
-                      }`}
+                    <Link
+                      to="/projects"
+                      className="inline-flex items-center font-semibold transition-colors duration-300"
+                      style={{ color: project.categoryColor }}
                     >
                       Voir le projet
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

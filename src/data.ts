@@ -55,6 +55,8 @@ import sqliteUrl from './assets/sqllite.png';
 import mysqlUrl from './assets/mysql.png';
 import mssqlUrl from './assets/msql.png';
 import mongodbUrl from './assets/mongodb.png';
+import tetrisUrl from './assets/tetris.png';
+import mailflowUrl from './assets/MailFlow.png';
 
 
 
@@ -370,16 +372,29 @@ export const moons: Moon[] = [
     projects: ["Portfolio SPA", "Dashboard Temps Réel", "App E‑commerce"],
     detailedProjects: [
       {
-        name: "Portfolio Interactif",
-        description: "Application monopage animée (SPA) avec routing, lazy loading et composants réutilisables.",
-        githubUrl: "https://github.com/SneusFR/Portfolio",
-        technologies: ["React", "TypeScript", "Vite", "Framer Motion", "CSS Modules"],
-        demoUrl: "https://portfolio-sneus.vercel.app",
+        name: "Tetris Revolution",
+        description: "Tetris Revolution est une application de jeu Tetris moderne développée en React avec Electron, offrant des fonctionnalités avancées comme l'authentification, un système de classement en ligne, une boutique, des statistiques, des effets visuels et sonores, et disponible à la fois en version web et desktop",
+        githubUrl: "https://github.com/SneusFR/tetris-revolution",
+        technologies: ["React", "Electron", "ExpressJS"],
+        image: tetrisUrl,
         technicalSpecs: {
-          architecture: "Architecture SPA avec React Router et code splitting automatique",
-          performance: "Temps de chargement < 2s avec lazy loading et optimisation Vite",
-          security: "Validation TypeScript stricte et sanitisation des données",
-          scalability: "Composants modulaires et système de design réutilisable"
+          architecture: "Architecture hybride web/desktop avec Electron et API REST ExpressJS",
+          performance: "Rendu 60fps avec optimisation Canvas et gestion d'état React",
+          security: "Authentification JWT et validation des scores côté serveur",
+          scalability: "Architecture modulaire avec système de plugins et classements distribués"
+        }
+      },
+      {
+        name: "MailFlow",
+        description: "Mailflow Editor : est une application React complète pour créer et gérer des workflows d'automatisation d'emails. Elle permet de concevoir visuellement des diagrammes de flux avec des nœuds drag-and-drop (IA, API, conditions, emails), d'importer des spécifications API, de gérer l'authentification utilisateur, et d'analyser les performances via des métriques et logs d'exécution. L'application combine un éditeur de diagrammes interactif avec des fonctionnalités avancées comme la collaboration, l'OCR pour les pièces jointes, et l'intégration d'IA pour l'automatisation des emails.",
+        githubUrl: "https://github.com/SneusFR/mailflow-editor",
+        technologies: ["React", "NodeJS", "MongoDB"],
+        image: mailflowUrl,
+        technicalSpecs: {
+          architecture: "Architecture React avec éditeur de diagrammes drag-and-drop et API NodeJS",
+          performance: "Rendu optimisé des workflows complexes avec virtualisation des nœuds",
+          security: "Authentification utilisateur et chiffrement des données sensibles",
+          scalability: "Architecture modulaire avec système de plugins et collaboration temps réel"
         }
       },
       {
