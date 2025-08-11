@@ -4380,3 +4380,192 @@ html:not(.dark) .glass-toggle-btn.active {
 
 /* Couleur pour les dots actifs */
 .bg-blue-500 { background-color: #3b82f6; }
+
+/* ====== BOUTON DARK MODE SOMBRE AVEC TRAITS JAUNES ====== */
+
+/* Bouton dark mode personnalisé - Sombre avec traits jaunes */
+.dark-mode-btn {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 2px solid #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Traits jaunes décoratifs */
+.dark-mode-btn::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #fbbf24 45deg,
+    transparent 90deg,
+    #fbbf24 135deg,
+    transparent 180deg,
+    #fbbf24 225deg,
+    transparent 270deg,
+    #fbbf24 315deg,
+    transparent 360deg
+  );
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+
+/* Masque pour créer les traits */
+.dark-mode-btn::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  z-index: 1;
+}
+
+/* Icône au centre */
+.dark-mode-btn svg {
+  position: relative;
+  z-index: 2;
+  color: #fbbf24;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.3));
+}
+
+/* Animation hover */
+.dark-mode-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(251, 191, 36, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #fbbf24;
+}
+
+.dark-mode-btn:hover::before {
+  opacity: 1;
+  animation: rotate-rays 2s linear infinite;
+}
+
+.dark-mode-btn:hover svg {
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+  transform: scale(1.1);
+}
+
+/* Animation des rayons */
+@keyframes rotate-rays {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* État actif/focus */
+.dark-mode-btn:active {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.dark-mode-btn:focus {
+  outline: none;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 3px rgba(251, 191, 36, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Effet de pulsation subtile */
+.dark-mode-btn {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      0 0 12px rgba(251, 191, 36, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Pause l'animation au hover pour éviter les conflits */
+.dark-mode-btn:hover {
+  animation: none;
+}
+
+/* Version mobile plus petite */
+@media (max-width: 768px) {
+  .dark-mode-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .dark-mode-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Variante pour le mode clair (optionnel) */
+.light-mode-btn {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px solid #cbd5e1;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.light-mode-btn::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #f59e0b 45deg,
+    transparent 90deg,
+    #f59e0b 135deg,
+    transparent 180deg,
+    #f59e0b 225deg,
+    transparent 270deg,
+    #f59e0b 315deg,
+    transparent 360deg
+  );
+}
+
+.light-mode-btn::after {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.light-mode-btn svg {
+  color: #f59e0b;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.3));
+}
+
+.light-mode-btn:hover {
+  border-color: #f59e0b;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(245, 158, 11, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.light-mode-btn:hover svg {
+  color: #92400e;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+}

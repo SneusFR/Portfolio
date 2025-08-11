@@ -97,6 +97,16 @@ export function Projects({ isDarkMode }: ProjectsProps) {
           '/src/assets/cafetmin2.jpg',
           '/src/assets/cafetmin3.jpg',
         ];
+      case 'rtbf-copy':
+        return [
+          '/src/assets/rtbfmin1.jpg',
+          '/src/assets/rtbfmin2.jpg',
+        ];
+      case 'koh lanta simulator':
+        return [
+          '/src/assets/kohlantamin1.png',
+          '/src/assets/kohlantamin2.png',
+        ];
       default:
         return [
           '/src/assets/tetris.png',
@@ -427,7 +437,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     </p>
 
                     {/* Technologies - limitées à 3 */}
-                    <div className="flex flex-wrap justify-center gap-1 mb-4">
+                    <div className="flex flex-wrap justify-center gap-2 mb-4">
                       {project.technologies.slice(0, 3).map(tech => (
                         <span
                           key={tech}

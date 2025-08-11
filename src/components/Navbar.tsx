@@ -162,19 +162,7 @@ export function Navbar({
         <div className="navbar-actions-reflect absolute right-6 md:right-6 hidden md:block">
           <button
             onClick={() => onDarkModeToggle?.(!isDarkMode)}
-            className={`
-              relative flex items-center justify-center
-              w-10 h-10 rounded-full
-              transition-all duration-300 ease-in-out
-              ${isDarkMode 
-                ? 'bg-white/08 hover:bg-white/15 text-white/90 border border-white/10' 
-                : 'bg-gray-100/50 hover:bg-gray-200/50 text-gray-600 border border-gray-200/30'
-              }
-              hover:scale-105
-              focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-opacity-50
-              backdrop-blur-md
-              shadow-sm hover:shadow-md
-            `}
+            className={`dark-mode-btn ${isDarkMode ? '' : 'light-mode-btn'}`}
             aria-label={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
           >
             {isDarkMode ? (

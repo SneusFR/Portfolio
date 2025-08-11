@@ -313,7 +313,20 @@ export const moons: Moon[] = [
     color: "#777bb4",
     description: "Langage serveur populaire pour développement web et CMS.",
     projects: [],
-    detailedProjects: [],
+    detailedProjects: [
+      {
+        name: "Rtbf-copy",
+        description: "Rtbf-copy est une reproduction fidèle du site web de la RTBF développée dans le cadre d'un projet étudiant avec Laravel. L'application comprend un système complet de gestion d'articles avec un back-office administrateur, permettant la création et modification de contenu. Les utilisateurs peuvent créer un compte, se connecter, mettre des articles en favoris, effectuer des recherches par mots-clés et naviguer dans une interface moderne reproduisant l'expérience du site officiel.",
+        githubUrl: "https://github.com/SneusFR/rtbf-copy",
+        technologies: ["Laravel", "Eloquent", "PHP"],
+        technicalSpecs: {
+          architecture: "Architecture MVC Laravel avec ORM Eloquent et système d'authentification intégré",
+          performance: "Optimisation des requêtes avec Eloquent et mise en cache des articles populaires",
+          security: "Authentification Laravel avec protection CSRF et validation des données utilisateur",
+          scalability: "Structure modulaire avec migrations de base de données et système de rôles extensible"
+        }
+      }
+    ],
     skills: ["Laravel", "Symfony", "WordPress", "Composer", "PHPUnit", "MySQL", "Eloquent ORM"],
     experience: "4 ans",
     icon: phpUrl
@@ -421,6 +434,32 @@ export const moons: Moon[] = [
     skills: ["SQLite", "SQL", "Database Design", "Mobile Development", "Embedded Systems", "Performance"],
     experience: "4 ans",
     icon: sqliteUrl
+  },
+  {
+    id: "koh-lanta",
+    label: "Koh Lanta",
+    ring: "frontend",
+    angle0: 0,
+    color: "#4ade80",
+    description: "Projet de simulation d'événements et dynamiques d'une saison de Koh-Lanta.",
+    projects: [],
+    detailedProjects: [
+      {
+        name: "Koh Lanta simulator",
+        description: "Koh lanta simulator est un projet d'application web Vue.js qui simule les événements et dynamiques d'une saison de Koh-Lanta avec deux équipes (bleue et rouge) de 4 candidats chacune. L'application génère aléatoirement des événements comme des disputes, formations d'alliances, et situations narratives, tout en gérant les statistiques des participants (social, divertissement, survie, stratégie, comportement, sport) et en permettant de suivre l'évolution des alliances et leur solidité au fil du temps.",
+        githubUrl: "https://github.com/SneusFR/koh-lanta-simulator",
+        technologies: ["Vue.js", "Pinia", "Vuetify"],
+        technicalSpecs: {
+          architecture: "Architecture Vue.js 3 avec Composition API et gestion d'état centralisée via Pinia",
+          performance: "Interface réactive optimisée avec Vuetify et génération d'événements en temps réel",
+          security: "Validation des données côté client et gestion sécurisée des états de jeu",
+          scalability: "Architecture modulaire permettant l'ajout de nouvelles mécaniques de jeu et événements"
+        }
+      }
+    ],
+    skills: ["Vue.js", "Pinia", "Vuetify", "Game Logic", "Event System"],
+    experience: "1 projet",
+    icon: vuejsUrl
   }
 ];
 

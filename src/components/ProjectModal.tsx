@@ -84,6 +84,16 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           { src: '/src/assets/cafetmin2.jpg', type: 'image' },
           { src: '/src/assets/cafetmin3.jpg', type: 'image' },
         ];
+      case 'rtbf-copy':
+        return [
+          { src: '/src/assets/rtbfmin1.jpg', type: 'image' },
+          { src: '/src/assets/rtbfmin2.jpg', type: 'image' },
+        ];
+      case 'koh lanta simulator':
+        return [
+          { src: '/src/assets/kohlantamin1.png', type: 'image' },
+          { src: '/src/assets/kohlantamin2.png', type: 'image' },
+        ];
       default:
         return [
           { src: '/src/assets/tetris.png', type: 'image' },
