@@ -226,7 +226,7 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
                         Niveau d'expertise
                       </span>
                       <span className="text-sm font-bold text-gray-900">
-                        {moon.ring === 'passion' ? '95%' : moon.ring === 'frontend' ? '90%' : moon.ring === 'backend' ? '85%' : '80%'}
+                        {moon.ring === 'software' ? '95%' : moon.ring === 'frontend' ? '90%' : moon.ring === 'backend' ? '85%' : '80%'}
                       </span>
                     </div>
                     
@@ -259,7 +259,7 @@ export function SkillDialog({ moon, children, isOpen, onOpenChange }: SkillDialo
                         }}
                         initial={{ width: 0 }}
                         animate={{ 
-                          width: moon.ring === 'passion' ? '95%' : moon.ring === 'frontend' ? '90%' : moon.ring === 'backend' ? '85%' : '80%'
+                          width: moon.ring === 'software' ? '95%' : moon.ring === 'frontend' ? '90%' : moon.ring === 'backend' ? '85%' : '80%'
                         }}
                         transition={{ delay: 0.6, duration: 1.5, ease: 'easeOut' }}
                       />

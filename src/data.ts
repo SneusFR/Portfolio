@@ -16,7 +16,7 @@ export type Project = {
 export type Moon = {
   id: string;
   label: string;
-  ring: "passion" | "frontend" | "backend" | "database";
+  ring: "software" | "frontend" | "backend" | "database";
   angle0: number;
   color: string;
   description: string;
@@ -28,16 +28,13 @@ export type Moon = {
 };
 
 export const rings = {
-  passion: 3.0,
+  software: 3.0,
   frontend: 5.0,
   backend: 7.0,
   database: 9.0,
 } as const;
 
 import reactLogoUrl from './assets/reactlogo.png';
-import jeuxvideoUrl from './assets/jeuxvideo.png';
-import FootballUrl from './assets/foot.png';
-import PianoUrl from './assets/piano.png';
 import nextUrl from './assets/next.png';
 import angularUrl from './assets/angular.png';
 import svelteUrl from './assets/svelte.png';
@@ -58,54 +55,61 @@ import mongodbUrl from './assets/mongodb.png';
 import tetrisUrl from './assets/tetris.png';
 import mailflowUrl from './assets/MailFlow.png';
 import isfceCafetUrl from './assets/Cafetmenu.jpg';
+import gitUrl from './assets/git.png';
+import dockerUrl from './assets/docker.png';
+import kubernetesUrl from './assets/kubernete.png';
+import awsUrl from './assets/aws.png';
+import studioUrl from './assets/visual.png';
+import codeUrl from './assets/visualstudio.png';
+
 
 export const moons: Moon[] = [
   {
-    id: "Jeux-vidéo",
-    label: "Jeux-vidéo",
-    ring: "passion",
+    id: "vscode",
+    label: "Visual Studio Code",
+    ring: "software",
     angle0: 0,
-    color: "#60a5fa",
-    description: "Passionné de jeux vidéo depuis l'enfance, j'explore les mécaniques de jeu et l'industrie du gaming.",
+    color: "#fdfeffff",
+    description: "IDE léger et puissant de Microsoft, extensible avec de nombreux plugins pour le développement web moderne.",
     projects: [],
     detailedProjects: [],
-    skills: ["Game Design", "Unity", "C#", "Gameplay Programming", "Level Design"],
-    experience: "8 ans",
-    icon: jeuxvideoUrl 
+    skills: ["Extensions", "Debugging", "Git Integration", "IntelliSense", "Live Share", "Terminal Integration"],
+    experience: "5 ans",
+    icon: studioUrl
   },
   {
-    id: "Football",
-    label: "Football",
-    ring: "passion",
+    id: "visualstudio",
+    label: "Visual Studio",
+    ring: "software",
     angle0: Math.PI / 3,
-    color: "#f9a8d4",
-    description: "Pratique du football depuis l'adolescence, comprend l'esprit d'équipe et la stratégie.",
+    color: "#5C2D91",
+    description: "IDE complet de Microsoft pour le développement .NET et applications d'entreprise.",
     projects: [],
     detailedProjects: [],
-    skills: ["Esprit d'équipe", "Leadership", "Stratégie", "Persévérance", "Communication"],
-    experience: "12 ans",
-    icon: FootballUrl
+    skills: [".NET Development", "Debugging", "NuGet", "Team Foundation", "Azure Integration", "Testing Tools"],
+    experience: "3 ans",
+    icon: codeUrl
   },
   {
-    id: "Piano",
-    label: "Piano",
-    ring: "passion",
+    id: "git",
+    label: "Git",
+    ring: "software",
     angle0: (2 * Math.PI) / 3,
-    color: "#fcd34d",
-    description: "Musicien amateur, le piano m'apporte créativité et discipline dans mon approche du développement.",
+    color: "#cc877aff",
+    description: "Système de contrôle de version distribué essentiel pour la collaboration et le suivi des modifications.",
     projects: [],
     detailedProjects: [],
-    skills: ["Créativité", "Discipline", "Patience", "Théorie musicale", "Composition"],
-    experience: "6 ans",
-    icon: PianoUrl
+    skills: ["Version Control", "Branching", "Merging", "GitHub", "GitLab", "Pull Requests", "Conflict Resolution"],
+    experience: "5 ans",
+    icon: gitUrl
   },
   {
-    id: "nodejs",
-    label: "Node.js",
-    ring: "passion",
+    id: "docker",
+    label: "Docker",
+    ring: "software",
     angle0: Math.PI,
-    color: "#6ee7b7",
-    description: "Runtime JavaScript côté serveur pour créer des applications backend performantes.",
+    color: "#5b9fd3ff",
+    description: "Plateforme de conteneurisation pour déployer et gérer des applications de manière portable.",
     projects: [],
     detailedProjects: [
       {
@@ -122,35 +126,35 @@ export const moons: Moon[] = [
         }
       }
     ],
-    skills: ["Express.js", "API REST", "GraphQL", "Microservices", "WebSockets", "Authentication"],
-    experience: "4 ans",
-    icon: javaUrl
-  },
-  {
-    id: "design",
-    label: "UI/UX",
-    ring: "passion",
-    angle0: (4 * Math.PI) / 3,
-    color: "#a78bfa",
-    description: "Conception d'interfaces utilisateur intuitives et d'expériences utilisateur optimales.",
-    projects: [],
-    detailedProjects: [],
-    skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Wireframing", "Design Systems"],
+    skills: ["Containerization", "Docker Compose", "Dockerfile", "Image Management", "Orchestration", "DevOps"],
     experience: "3 ans",
-    icon: reactLogoUrl
+    icon: dockerUrl
   },
   {
-    id: "animation",
-    label: "Animation",
-    ring: "passion",
-    angle0: (5 * Math.PI) / 3,
-    color: "#fb7185",
-    description: "Création d'animations fluides et engageantes pour améliorer l'expérience utilisateur.",
+    id: "kubernetes",
+    label: "Kubernetes",
+    ring: "software",
+    angle0: (4 * Math.PI) / 3,
+    color: "#326CE5",
+    description: "Plateforme d'orchestration de conteneurs pour automatiser le déploiement et la gestion d'applications.",
     projects: [],
     detailedProjects: [],
-    skills: ["Framer Motion", "GSAP", "Three.js", "CSS Animations", "Lottie", "After Effects"],
+    skills: ["Container Orchestration", "Pods", "Services", "Deployments", "ConfigMaps", "Ingress", "Helm"],
     experience: "2 ans",
-    icon: reactLogoUrl
+    icon: kubernetesUrl
+  },
+  {
+    id: "aws",
+    label: "AWS",
+    ring: "software",
+    angle0: (5 * Math.PI) / 3,
+    color: "#d7cab5ff",
+    description: "Plateforme cloud d'Amazon offrant une large gamme de services pour héberger et gérer des applications.",
+    projects: [],
+    detailedProjects: [],
+    skills: ["EC2", "S3", "RDS", "Lambda", "CloudFormation", "API Gateway", "CloudWatch"],
+    experience: "3 ans",
+    icon: awsUrl
   },
   {
     id: "vue",
@@ -209,7 +213,7 @@ export const moons: Moon[] = [
     label: "Tailwind CSS",
     ring: "frontend",
     angle0: Math.PI / 3,
-    color: "#06b6d4",
+    color: "#9cc8cfff",
     description: "Framework CSS utilitaire pour créer rapidement des interfaces personnalisées.",
     projects: [],
     detailedProjects: [],
@@ -464,7 +468,7 @@ export const moons: Moon[] = [
 ];
 
 export const angularVelocities = {
-  passion: 0.04,
+  software: 0.04,
   frontend: 0.04,
   backend: 0.04,
   database: 0.04,

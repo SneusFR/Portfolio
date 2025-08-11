@@ -34,10 +34,10 @@ export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover, 
   // Organiser les compétences par catégorie
   const categories: SkillCategory[] = [
     {
-      id: 'passion',
-      label: 'Passions',
+      id: 'software',
+      label: 'Software',
       color: '#8b5cf6',
-      skills: moons.filter(moon => moon.ring === 'passion').map(moon => ({
+      skills: moons.filter(moon => moon.ring === 'software').map(moon => ({
         id: moon.id,
         label: moon.label,
         color: moon.color,
@@ -147,7 +147,7 @@ export function SkillsSidebar({ isDarkMode = false, onSkillClick, onSkillHover, 
                 style={{ '--category-color': category.color } as React.CSSProperties}
               >
                 <div className="category-icon">
-                  {category.id === 'passion' && <Music size={16} style={{ color: category.color }} />}
+                  {category.id === 'software' && <Code2 size={16} style={{ color: category.color }} />}
                   {category.id === 'frontend' && <Globe size={16} style={{ color: category.color }} />}
                   {category.id === 'backend' && <Code2 size={16} style={{ color: category.color }} />}
                   {category.id === 'database' && <Database size={16} style={{ color: category.color }} />}

@@ -28,7 +28,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
   useEffect(() => {
     let projects = allProjects;
 
-    // Filtrage par rings (passion, frontend, backend, database)
+    // Filtrage par rings (software, frontend, backend, database)
     if (selectedRings.length > 0) {
       projects = projects.filter(project => {
         const projectMoon = moons.find(moon => moon.label === project.category);
@@ -298,7 +298,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                 >
                   {/* Filtres par rings */}
                   {[
-                    { key: 'passion', label: 'Passion', color: '#60a5fa' },
+                    { key: 'software', label: 'Software', color: '#60a5fa' },
                     { key: 'frontend', label: 'Front-end', color: '#4ade80' },
                     { key: 'backend', label: 'Back-end', color: '#f59e0b' },
                     { key: 'database', label: 'Base de données', color: '#ef4444' }
