@@ -402,6 +402,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                       className={`text-xl font-bold mb-3 ${
                         isDarkMode ? 'text-white' : 'text-gray-900'
                       }`}
+                      style={project.name.toLowerCase() === 'tetris revolution' ? { fontFamily: 'Tetris, Inter, sans-serif' } : {}}
                     >
                       {project.name}
                     </h3>

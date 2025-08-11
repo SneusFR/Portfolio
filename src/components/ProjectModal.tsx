@@ -57,46 +57,51 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
 
   const demoUrl = project.demoUrl || `https://demo-${project.name.toLowerCase().replace(/\s+/g, '-')}.vercel.app`;
 
-  // Images du carrousel spécifiques à chaque projet
-  const getCarouselImages = (projectName: string): string[] => {
+  // Images et médias du carrousel spécifiques à chaque projet
+  const getCarouselMedia = (projectName: string): Array<{src: string, type: 'image' | 'video'}> => {
     switch (projectName.toLowerCase()) {
       case 'tetris revolution':
         return [
-          '/src/assets/tetrismin1.png',
-          '/src/assets/tetrismin2.png',
-          '/src/assets/tetrismin3.png',
-          '/src/assets/tetrismin4.png',
-          '/src/assets/tetrismin5.png',
+          { src: '/src/assets/tetrismin1.png', type: 'image' },
+          { src: '/src/assets/tetrismin2.png', type: 'image' },
+          { src: '/src/assets/tetrismin3.png', type: 'image' },
+          { src: '/src/assets/tetrismin4.png', type: 'image' },
+          { src: '/src/assets/tetrismin5.mp4', type: 'video' },
         ];
       case 'mailflow':
         return [
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png', // Pour le moment on répète la même image
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png',
+          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: '/src/assets/MailFlow.png', type: 'image' },
         ];
       case 'isfce cafet':
         return [
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg', // Pour le moment on répète la même image
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg',
+          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
+          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
+          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
+          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
+          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
         ];
       default:
-        // Images par défaut pour les autres projets
         return [
-          '/src/assets/tetris.png',
-          '/src/assets/MailFlow.png',
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/tetris.png',
-          '/src/assets/MailFlow.png',
+          { src: '/src/assets/tetris.png', type: 'image' },
+          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
+          { src: '/src/assets/tetris.png', type: 'image' },
+          { src: '/src/assets/MailFlow.png', type: 'image' },
         ];
     }
   };
 
+  // Fonction pour obtenir les images pour la compatibilité
+  const getCarouselImages = (projectName: string): string[] => {
+    return getCarouselMedia(projectName).map(media => media.src);
+  };
+
   const carouselImages = getCarouselImages(project.name);
+  const carouselMedia = getCarouselMedia(project.name);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
@@ -160,6 +165,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
               className={`text-3xl md:text-4xl font-bold mb-4 text-center ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
+              style={project.name.toLowerCase() === 'tetris revolution' ? { fontFamily: 'Tetris, Inter, sans-serif' } : {}}
             >
               {project.name}
             </h2>
@@ -175,12 +181,24 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
                       : 'bg-white/50 border-white/30'
                   }`}
                 >
-                  <img
-                    src={carouselImages[currentImageIndex]}
-                    alt={`${project.name} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700 cursor-pointer hover:scale-105"
-                    onClick={openEnlargedImage}
-                  />
+                  {carouselMedia[currentImageIndex].type === 'video' ? (
+                    <video
+                      src={carouselMedia[currentImageIndex].src}
+                      className="w-full h-full object-cover transition-transform duration-700 cursor-pointer hover:scale-105"
+                      onClick={openEnlargedImage}
+                      controls
+                      loop
+                      muted
+                      autoPlay
+                    />
+                  ) : (
+                    <img
+                      src={carouselMedia[currentImageIndex].src}
+                      alt={`${project.name} - Image ${currentImageIndex + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-700 cursor-pointer hover:scale-105"
+                      onClick={openEnlargedImage}
+                    />
+                  )}
                 </div>
 
                 {/* Boutons de navigation */}
@@ -213,11 +231,11 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
 
               {/* Miniatures */}
               <div className="flex gap-3 overflow-x-auto pb-2 justify-center">
-                {carouselImages.map((image, index) => (
+                {carouselMedia.map((media, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 hover:scale-105 ${
+                    className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 hover:scale-105 ${
                       index === currentImageIndex
                         ? 'border-blue-500 ring-2 ring-blue-500/30'
                         : isDarkMode
@@ -225,11 +243,27 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
                         : 'border-gray-200/50 hover:border-gray-300/70'
                     }`}
                   >
-                    <img
-                      src={image}
-                      alt={`Miniature ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
+                    {media.type === 'video' ? (
+                      <>
+                        <video
+                          src={media.src}
+                          className="w-full h-full object-cover"
+                          muted
+                        />
+                        {/* Icône play pour indiquer que c'est une vidéo */}
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </div>
+                      </>
+                    ) : (
+                      <img
+                        src={media.src}
+                        alt={`Miniature ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                   </button>
                 ))}
               </div>
@@ -278,9 +312,9 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           </div>
 
           {/* Fiche technique */}
-          <div className="mb-8">
+          <div className="mb-8 text-center">
             <h3
-              className={`text-2xl font-bold mb-6 text-center ${
+              className={`text-2xl font-bold mb-6 ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
             >
@@ -298,7 +332,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
                   }`}
                 >
                   <h4
-                    className={`text-lg font-semibold mb-3 capitalize ${
+                    className={`text-lg font-semibold mb-3 capitalize text-center ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
                     }`}
                   >
@@ -308,7 +342,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
                     {key === 'scalability' && '📈 Évolutivité'}
                   </h4>
                   <p
-                    className={`text-sm leading-relaxed ${
+                    className={`text-sm leading-relaxed text-center ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-600'
                     }`}
                   >
@@ -400,20 +434,37 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
                 </p>
               </div>
 
-              {/* Image agrandie avec meilleur affichage */}
+              {/* Média agrandi avec meilleur affichage */}
               <div className="relative mb-4">
                 <div className={`w-full max-h-[65vh] rounded-xl overflow-hidden flex items-center justify-center ${isDarkMode ? 'bg-gray-800/50' : 'bg-gray-100/50'}`}>
-                  <img
-                    src={carouselImages[currentImageIndex]}
-                    alt={`${project.name} - Image ${currentImageIndex + 1} (agrandie)`}
-                    className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
-                    style={{ 
-                      maxHeight: '65vh',
-                      maxWidth: '100%',
-                      height: 'auto',
-                      width: 'auto'
-                    }}
-                  />
+                  {carouselMedia[currentImageIndex].type === 'video' ? (
+                    <video
+                      src={carouselMedia[currentImageIndex].src}
+                      className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+                      style={{ 
+                        maxHeight: '65vh',
+                        maxWidth: '100%',
+                        height: 'auto',
+                        width: 'auto'
+                      }}
+                      controls
+                      loop
+                      muted
+                      autoPlay
+                    />
+                  ) : (
+                    <img
+                      src={carouselMedia[currentImageIndex].src}
+                      alt={`${project.name} - Image ${currentImageIndex + 1} (agrandie)`}
+                      className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+                      style={{ 
+                        maxHeight: '65vh',
+                        maxWidth: '100%',
+                        height: 'auto',
+                        width: 'auto'
+                      }}
+                    />
+                  )}
                 </div>
 
                 {/* Boutons de navigation dans la lightbox */}
