@@ -8,6 +8,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'SuperFoods';
+  src: url('./assets/font/SuperFoods.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -4351,3 +4358,25 @@ html:not(.dark) .glass-toggle-btn.active {
 
 /* Mode sombre pour bg-gray-800 */
 .dark .bg-gray-800 { background-color: #1f2937; }
+
+/* ====== CLASSES CSS POUR LES BOUTONS SOMBRES DE LA MODALE ====== */
+
+/* Backgrounds avec opacité */
+.bg-gray-800\/60 { background-color: rgba(31, 41, 55, .6); }
+.bg-gray-900\/90 { background-color: rgba(17, 24, 39, .9); }
+.bg-white\/60    { background-color: rgba(255,255,255,.6); }
+
+/* Bordures avec opacité */
+.border-gray-600\/30 { border-color: rgba(75, 85, 99, .3); }
+.border-gray-700\/50 { border-color: rgba(55, 65, 81, .5); }
+.border-gray-200\/50 { border-color: rgba(229,231,235,.5); }
+
+/* États hover */
+.hover\:bg-gray-700\/60:hover { background-color: rgba(55, 65, 81, .6); }
+.hover\:bg-black\/90:hover    { background-color: rgba(0,0,0,.9); }
+
+/* Background pour l'overlay */
+.bg-black\/70 { background-color: rgba(0,0,0,.7); }
+
+/* Couleur pour les dots actifs */
+.bg-blue-500 { background-color: #3b82f6; }

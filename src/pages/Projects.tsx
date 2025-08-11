@@ -84,19 +84,18 @@ export function Projects({ isDarkMode }: ProjectsProps) {
         ];
       case 'mailflow':
         return [
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png',
-          '/src/assets/MailFlow.png',
+          '/src/assets/mailflowmin1.png',
+          '/src/assets/mailflowmin2.png',
+          '/src/assets/mailflowmin3.png',
+          '/src/assets/mailflowmin4.png',
+          '/src/assets/mailflowmin5.png',
+          '/src/assets/mailflowmin6.png',
         ];
       case 'isfce cafet':
         return [
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/Cafetmenu.jpg',
+          '/src/assets/cafetmin1.jpg',
+          '/src/assets/cafetmin2.jpg',
+          '/src/assets/cafetmin3.jpg',
         ];
       default:
         return [
@@ -115,8 +114,13 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     return description.substring(0, maxLength).trim() + '...';
   };
 
-  // Effect pour le carrousel automatique
+  // Effect pour le carrousel automatique - s'arrête quand la modale est ouverte
   useEffect(() => {
+    // Ne pas démarrer l'intervalle si la modale est ouverte
+    if (isModalOpen) {
+      return;
+    }
+
     const interval = setInterval(() => {
       setCurrentImageIndexes(prev => {
         const newIndexes = { ...prev };
@@ -130,7 +134,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     }, 3000); // Change d'image toutes les 3 secondes
 
     return () => clearInterval(interval);
-  }, [filteredProjects]);
+  }, [filteredProjects, isModalOpen]); // Ajout de isModalOpen dans les dépendances
 
   return (
     <div className="min-h-screen relative">
@@ -374,7 +378,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     </div>
 
                     {/* Badge de catégorie */}
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center justify-center gap-3 mb-4">
                       <div
                         className="w-6 h-6 rounded-full flex items-center justify-center"
                         style={{ backgroundColor: `${project.categoryColor}20` }}
@@ -399,17 +403,23 @@ export function Projects({ isDarkMode }: ProjectsProps) {
 
                     {/* Titre du projet */}
                     <h3
-                      className={`text-xl font-bold mb-3 ${
+                      className={`text-xl font-bold mb-3 text-center ${
                         isDarkMode ? 'text-white' : 'text-gray-900'
                       }`}
-                      style={project.name.toLowerCase() === 'tetris revolution' ? { fontFamily: 'Tetris, Inter, sans-serif' } : {}}
+                      style={
+                        project.name.toLowerCase() === 'tetris revolution' 
+                          ? { fontFamily: 'Tetris, Inter, sans-serif' } 
+                          : project.name.toLowerCase() === 'isfce cafet'
+                          ? { fontFamily: 'SuperFoods, Inter, sans-serif' }
+                          : {}
+                      }
                     >
                       {project.name}
                     </h3>
 
                     {/* Description tronquée */}
                     <p
-                      className={`text-sm mb-4 leading-relaxed flex-grow ${
+                      className={`text-sm mb-4 leading-relaxed flex-grow text-center ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-600'
                       }`}
                     >
@@ -417,7 +427,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     </p>
 
                     {/* Technologies - limitées à 3 */}
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    <div className="flex flex-wrap justify-center gap-1 mb-4">
                       {project.technologies.slice(0, 3).map(tech => (
                         <span
                           key={tech}
@@ -444,7 +454,7 @@ export function Projects({ isDarkMode }: ProjectsProps) {
                     </div>
 
                     {/* Liens */}
-                    <div className="flex gap-3 mt-auto">
+                    <div className="flex justify-center gap-3 mt-auto">
                       <a
                         href={project.githubUrl}
                         target="_blank"

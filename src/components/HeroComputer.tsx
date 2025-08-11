@@ -40,7 +40,7 @@ function BeardedModel({ isDarkMode }: BeardedModelProps) {
       rotationIntensity={0.2}
       floatIntensity={0.15}
     >
-      <group ref={meshRef} scale={[4, 4, 4]} position={[-10, -25, -60]}>
+      <group ref={meshRef} scale={[4, 4, 4]} position={[-2, -4, -12]}>
         <primitive object={scene} />
         
         {/* Éclairage principal */}
@@ -113,7 +113,7 @@ export function HeroComputer({ isDarkMode }: HeroComputerProps) {
       
       {/* Canvas 3D */}
       <Canvas
-        camera={{ position: [0, 0, 10], fov: 45 }}
+        camera={{ position: [0, 0, 0], fov: 45 }}
         className="absolute inset-0 w-full h-full"
         gl={{ 
           antialias: true, 

@@ -70,19 +70,19 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
         ];
       case 'mailflow':
         return [
-          { src: '/src/assets/MailFlow.png', type: 'image' },
-          { src: '/src/assets/MailFlow.png', type: 'image' },
-          { src: '/src/assets/MailFlow.png', type: 'image' },
-          { src: '/src/assets/MailFlow.png', type: 'image' },
-          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: '/src/assets/mailflowmin1.png', type: 'image' },
+          { src: '/src/assets/mailflowmin2.png', type: 'image' },
+          { src: '/src/assets/mailflowmin3.png', type: 'image' },
+          { src: '/src/assets/mailflowmin4.png', type: 'image' },
+          { src: '/src/assets/mailflowmin5.png', type: 'image' },
+          { src: '/src/assets/mailflowmin6.png', type: 'image' },
+          { src: '/src/assets/mailflowmin6.mp4', type: 'video' },
         ];
       case 'isfce cafet':
         return [
-          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
-          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
-          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
-          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
-          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
+          { src: '/src/assets/cafetmin1.jpg', type: 'image' },
+          { src: '/src/assets/cafetmin2.jpg', type: 'image' },
+          { src: '/src/assets/cafetmin3.jpg', type: 'image' },
         ];
       default:
         return [
@@ -147,7 +147,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
           onClick={onClose}
           className={`absolute top-6 right-6 z-10 w-10 h-10 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
             isDarkMode
-              ? 'bg-gray-800/60 border-gray-600/30 text-black hover:bg-gray-700/60 hover:text-black'
+              ? 'bg-gray-900/90 border-gray-700/50 text-white hover:bg-black/90 hover:text-white'
               : 'bg-white/60 border-gray-200/50 text-black hover:bg-white/80 hover:text-black'
           }`}
         >
@@ -165,7 +165,13 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
               className={`text-3xl md:text-4xl font-bold mb-4 text-center ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
-              style={project.name.toLowerCase() === 'tetris revolution' ? { fontFamily: 'Tetris, Inter, sans-serif' } : {}}
+              style={
+                project.name.toLowerCase() === 'tetris revolution' 
+                  ? { fontFamily: 'Tetris, Inter, sans-serif' } 
+                  : project.name.toLowerCase() === 'isfce cafet'
+                  ? { fontFamily: 'SuperFoods, Inter, sans-serif' }
+                  : {}
+              }
             >
               {project.name}
             </h2>
@@ -219,7 +225,7 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
                   onClick={nextImage}
                   className={`absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-110 ${
                     isDarkMode
-                      ? 'bg-gray-800/60 border-gray-600/30 text-white hover:bg-gray-700/60'
+                      ? 'bg-gray-900/90 border-gray-700/50 text-white hover:bg-black/90'
                       : 'bg-white/60 border-gray-200/50 text-gray-900 hover:bg-white/80'
                   }`}
                 >
