@@ -2265,6 +2265,14 @@ body.skills-page {
   line-height: 1.1; 
 }
 
+/* Version mobile plus petite pour éviter les débordements */
+@media (max-width: 767px) {
+  .h1-fluid { 
+    font-size: clamp(1.5rem, 6vw, 2.5rem); 
+    line-height: 1.2; 
+  }
+}
+
 .lead-fluid { 
   font-size: clamp(1rem, 3.8vw, 1.25rem); 
 }
@@ -4658,4 +4666,30 @@ html:not(.dark) .glass-toggle-btn.active {
   .lg\:justify-start{ justify-content:flex-start !important; }
 }
 
+/* Équilibre les retours à la ligne des gros titres (support moderne) */
+.title-balance {
+  text-wrap: balance; /* Chrome/Edge/Firefox récents */
+}
 
+/* Nom plus grand sur mobile, sans dépassement */
+@media (max-width: 767px) {
+  .name-mobile {
+    display: block;              /* permet de bien gérer les retours */
+    max-width: 100%;
+    /* Taille fluide : plus grand que ton h1-fluid mobile, sans excès */
+    font-size: clamp(2.5rem, 14vw, 3.5rem);
+    line-height: 1.1;
+
+    /* Empêche les dépassements, garde une césure propre */
+    word-break: keep-all;        /* évite de casser au milieu d'un mot */
+    overflow-wrap: anywhere;     /* mais casse si vraiment nécessaire */
+    letter-spacing: -0.01em;     /* léger resserrage pour les grands titres */
+  }
+}
+
+/* Fallback si text-wrap n'est pas supporté */
+@supports not (text-wrap: balance) {
+  .title-balance {
+    overflow-wrap: anywhere;
+  }
+}

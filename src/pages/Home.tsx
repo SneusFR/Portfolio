@@ -30,10 +30,10 @@ export function Home({ isDarkMode }: HomeProps) {
           {/* Contenu textuel - Style Pinia */}
           <div className="text-center lg:text-left">
             {/* Titre principal - Style Pinia */}
-            <h1 className={`h1-fluid font-bold mb-6 leading-tight ${
+            <h1 className={`h1-fluid title-balance font-bold mb-6 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent name-mobile">
                 Valentin Vanrumbeke
               </span>
               <br />
