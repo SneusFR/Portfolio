@@ -14,6 +14,9 @@ import {
   Shield
 } from "lucide-react";
 
+// Import de la photo de profil
+import profileImage from '../assets/facetete.png';
+
 // Composant pour les compétences logicielles - Défini en dehors pour éviter les re-renders
 const SoftwareSkills = ({ skills }: { skills: any[] }) => (
   <div className="space-y-4 md:space-y-6">
@@ -292,7 +295,7 @@ export default function About() {
             {/* Avatar - Centré au-dessus */}
             <div className="flex-shrink-0">
               <img
-                src="/src/assets/facetete.png"
+                src={profileImage}
                 alt="Valentin Vanrumbeke"
                 className="w-32 h-32 rounded-full object-cover border-4 border-white/50 shadow-2xl"
               />

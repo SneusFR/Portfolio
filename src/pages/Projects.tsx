@@ -2,6 +2,34 @@ import { useState, useEffect } from 'react';
 import { moons } from '../data';
 import { ProjectModal } from '../components/ProjectModal';
 
+// Import des images pour le carrousel
+import tetrismin1 from '../assets/tetrismin1.png';
+import tetrismin2 from '../assets/tetrismin2.png';
+import tetrismin3 from '../assets/tetrismin3.png';
+import tetrismin4 from '../assets/tetrismin4.png';
+import tetrismin5 from '../assets/tetrismin5.png';
+
+import mailflowmin1 from '../assets/mailflowmin1.png';
+import mailflowmin2 from '../assets/mailflowmin2.png';
+import mailflowmin3 from '../assets/mailflowmin3.png';
+import mailflowmin4 from '../assets/mailflowmin4.png';
+import mailflowmin5 from '../assets/mailflowmin5.png';
+import mailflowmin6 from '../assets/mailflowmin6.png';
+
+import cafetmin1 from '../assets/cafetmin1.jpg';
+import cafetmin2 from '../assets/cafetmin2.jpg';
+import cafetmin3 from '../assets/cafetmin3.jpg';
+
+import rtbfmin1 from '../assets/rtbfmin1.jpg';
+import rtbfmin2 from '../assets/rtbfmin2.jpg';
+
+import kohlantamin1 from '../assets/kohlantamin1.png';
+import kohlantamin2 from '../assets/kohlantamin2.png';
+
+import tetris from '../assets/tetris.png';
+import mailflow from '../assets/MailFlow.png';
+import cafetmenu from '../assets/Cafetmenu.jpg';
+
 interface ProjectsProps {
   isDarkMode: boolean;
 }
@@ -71,49 +99,49 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     setSelectedProject(null);
   };
 
-  // Fonction pour obtenir les images du carrousel (même logique que dans ProjectModal)
+  // Fonction pour obtenir les images du carrousel avec imports
   const getCarouselImages = (projectName: string): string[] => {
     switch (projectName.toLowerCase()) {
       case 'tetris revolution':
         return [
-          '/src/assets/tetrismin1.png',
-          '/src/assets/tetrismin2.png',
-          '/src/assets/tetrismin3.png',
-          '/src/assets/tetrismin4.png',
-          '/src/assets/tetrismin5.png',
+          tetrismin1,
+          tetrismin2,
+          tetrismin3,
+          tetrismin4,
+          tetrismin5,
         ];
       case 'mailflow':
         return [
-          '/src/assets/mailflowmin1.png',
-          '/src/assets/mailflowmin2.png',
-          '/src/assets/mailflowmin3.png',
-          '/src/assets/mailflowmin4.png',
-          '/src/assets/mailflowmin5.png',
-          '/src/assets/mailflowmin6.png',
+          mailflowmin1,
+          mailflowmin2,
+          mailflowmin3,
+          mailflowmin4,
+          mailflowmin5,
+          mailflowmin6,
         ];
       case 'isfce cafet':
         return [
-          '/src/assets/cafetmin1.jpg',
-          '/src/assets/cafetmin2.jpg',
-          '/src/assets/cafetmin3.jpg',
+          cafetmin1,
+          cafetmin2,
+          cafetmin3,
         ];
       case 'rtbf-copy':
         return [
-          '/src/assets/rtbfmin1.jpg',
-          '/src/assets/rtbfmin2.jpg',
+          rtbfmin1,
+          rtbfmin2,
         ];
       case 'koh lanta simulator':
         return [
-          '/src/assets/kohlantamin1.png',
-          '/src/assets/kohlantamin2.png',
+          kohlantamin1,
+          kohlantamin2,
         ];
       default:
         return [
-          '/src/assets/tetris.png',
-          '/src/assets/MailFlow.png',
-          '/src/assets/Cafetmenu.jpg',
-          '/src/assets/tetris.png',
-          '/src/assets/MailFlow.png',
+          tetris,
+          mailflow,
+          cafetmenu,
+          tetris,
+          mailflow,
         ];
     }
   };
