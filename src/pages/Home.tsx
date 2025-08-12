@@ -121,21 +121,26 @@ export function Home({ isDarkMode }: HomeProps) {
         
         {/* Scroll indicator */}
         <button 
-          onClick={() => handleScrollToSection('projects')}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform duration-200 cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleScrollToSection('projects');
+          }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform duration-200 cursor-pointer z-50"
           style={{
             background: 'none',
             border: 'none',
             outline: 'none',
-            padding: 0,
+            padding: '12px',
             margin: 0,
             boxShadow: 'none',
             appearance: 'none',
-            WebkitAppearance: 'none'
+            WebkitAppearance: 'none',
+            pointerEvents: 'auto'
           }}
           aria-label="Aller à la section projets"
         >
-          <svg className={`w-6 h-6 ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'} transition-colors duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={`w-8 h-8 ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'} transition-colors duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </button>
@@ -682,7 +687,7 @@ export function Home({ isDarkMode }: HomeProps) {
                 
                 <div className="text-center">
                   <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-                    4+
+                    1+
                   </div>
                   <div className={`text-sm font-medium ${
                     isDarkMode ? 'text-gray-400' : 'text-gray-600'

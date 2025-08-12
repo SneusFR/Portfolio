@@ -27,9 +27,27 @@ export const scrollToSection = (sectionId: string, navigate?: NavigateFunction, 
     return;
   }
   
-  // Pour les autres sections, comportement normal
+  // Pour les autres sections, comportement avec offset pour desktop
   const element = document.getElementById(sectionId);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    // Détecter si on est sur desktop (largeur > 768px)
+    const isDesktop = window.innerWidth > 768;
+    
+    if (isDesktop && sectionId === 'projects') {
+      // Pour la section projects sur desktop, utiliser scrollIntoView avec un offset
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Ajouter un petit délai puis ajuster la position
+      setTimeout(() => {
+        const currentScrollY = window.scrollY;
+        window.scrollTo({
+          top: currentScrollY + 100, // Descendre de 100px supplémentaires
+          behavior: 'smooth'
+        });
+      }, 100);
+    } else {
+      // Comportement normal pour mobile ou autres sections
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 };
