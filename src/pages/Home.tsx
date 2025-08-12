@@ -33,8 +33,35 @@ export function Home({ isDarkMode }: HomeProps) {
             <h1 className={`h1-fluid title-balance font-bold mb-6 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent name-mobile">
-                Valentin Vanrumbeke
+              <span className="liquid-text-container name-mobile">
+                <span 
+                  className={`liquid-text liquid-text-lg ${!isDarkMode ? 'light-mode' : ''}`}
+                  data-text="Valentin"
+                >
+                  Valentin
+                </span>
+                <div className="liquid-particles">
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                </div>
+              </span><br />
+              <span className="liquid-text-container name-mobile">
+                <span 
+                  className={`liquid-text liquid-text-lg vanrumbeke-gradient ${!isDarkMode ? 'light-mode' : ''}`}
+                  data-text="Vanrumbeke"
+                >
+                  Vanrumbeke
+                </span>
+                <div className="liquid-particles">
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                  <div className="liquid-particle"></div>
+                </div>
               </span>
               <br />
               Développeur
