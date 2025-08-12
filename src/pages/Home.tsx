@@ -30,7 +30,7 @@ export function Home({ isDarkMode }: HomeProps) {
           {/* Contenu textuel - Style Pinia */}
           <div className="text-center lg:text-left">
             {/* Titre principal - Style Pinia */}
-            <h1 className={`h1-fluid font-bold mb-6 leading-tight ${
+            <h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -168,12 +168,22 @@ export function Home({ isDarkMode }: HomeProps) {
               </span>
             </div>
             
-            <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 ${
+            <h2 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              <span className="block">Projets</span>
-              <span className="block mt-3 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
-                sélectionnés
+              <span className="block sm:hidden">
+                Mes
+                <br />
+                <span className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
+                  projets
+                </span>
+              </span>
+              <span className="hidden sm:block">
+                Projets
+                <br />
+                <span className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
+                  sélectionnés
+                </span>
               </span>
             </h2>
             
@@ -311,13 +321,22 @@ export function Home({ isDarkMode }: HomeProps) {
               </span>
             </div>
             
-            <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight ${
+            <h2 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              Mes domaines
-              <br />
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                d'expertise
+              <span className="block sm:hidden">
+                Mon
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  expertise
+                </span>
+              </span>
+              <span className="hidden sm:block">
+                Mes domaines
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  d'expertise
+                </span>
               </span>
             </h2>
             
@@ -526,13 +545,22 @@ export function Home({ isDarkMode }: HomeProps) {
               </span>
             </div>
             
-            <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight ${
+            <h2 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              Créateur d'expériences
-              <br />
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                numériques
+              <span className="block sm:hidden">
+                Créateur
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  digital
+                </span>
+              </span>
+              <span className="hidden sm:block">
+                Créateur d'expériences
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  numériques
+                </span>
               </span>
             </h2>
             
