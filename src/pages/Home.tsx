@@ -1,17 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { HeroComputer } from '../components/HeroComputer';
 import { moons } from '../data';
+import { scrollToSection } from '../utils/navigation';
 
 interface HomeProps {
   isDarkMode: boolean;
 }
 
 export function Home({ isDarkMode }: HomeProps) {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleScrollToSection = (sectionId: string) => {
+    scrollToSection(sectionId, navigate, location.pathname);
   };
 
   return (
@@ -63,7 +64,7 @@ export function Home({ isDarkMode }: HomeProps) {
               </Link>
               
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => handleScrollToSection('contact')}
                 className={`px-8 py-4 font-semibold rounded-full border-2 transition-all duration-300 hover:scale-105 ${
                   isDarkMode
                     ? 'bg-gray-800/80 border-gray-600 text-gray-100 hover:bg-gray-700 hover:border-gray-400 hover:text-gray-50'
@@ -80,7 +81,7 @@ export function Home({ isDarkMode }: HomeProps) {
                 href="#about"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection('about');
+                  handleScrollToSection('about');
                 }}
                 className={`flex items-center gap-2 font-medium transition-colors duration-300 ${
                   isDarkMode 
@@ -120,7 +121,7 @@ export function Home({ isDarkMode }: HomeProps) {
         
         {/* Scroll indicator */}
         <button 
-          onClick={() => scrollToSection('projects')}
+          onClick={() => handleScrollToSection('projects')}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform duration-200 cursor-pointer"
           style={{
             background: 'none',
@@ -686,15 +687,32 @@ export function Home({ isDarkMode }: HomeProps) {
           }`}>
             Prêt à collaborer ?
           </h2>
-          <p className={`text-xl mb-12 max-w-2xl mx-auto ${
+          <p className={`text-xl mb-8 max-w-2xl mx-auto ${
             isDarkMode ? 'text-gray-400' : 'text-gray-600'
           }`}>
             Transformons ensemble vos idées en réalité numérique
           </p>
           
+          <div className={`mb-8 p-4 rounded-lg backdrop-blur-sm border ${
+            isDarkMode 
+              ? 'bg-white/5 border-white/10' 
+              : 'bg-black/5 border-black/10'
+          }`}>
+            <p className={`text-sm mb-2 ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              Email de contact :
+            </p>
+            <p className={`text-lg font-mono select-all ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              ValentinVanrumbeke@gmail.com
+            </p>
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
-              href="mailto:contact@example.com"
+              href="mailto:ValentinVanrumbeke@gmail.com?subject=Demande de collaboration&body=Bonjour Valentin,%0D%0A%0D%0AJe souhaiterais discuter d'un projet avec vous.%0D%0A%0D%0ACordialement,"
               className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -707,7 +725,7 @@ export function Home({ isDarkMode }: HomeProps) {
             </a>
             
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/valentin-vanrumbeke-5b9926175/"
               target="_blank"
               rel="noopener noreferrer"
               className={`px-8 py-4 font-semibold rounded-full border-2 transition-all duration-300 hover:scale-105 flex items-center gap-2 ${

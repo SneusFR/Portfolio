@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { scrollToContact } from '../utils/navigation';
 
 interface NavbarProps {
   isDarkMode?: boolean;
@@ -15,6 +16,7 @@ export function Navbar({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
   
   const navItems = [
     { 
@@ -77,8 +79,12 @@ export function Navbar({
   const handleNavClick = (item: typeof navItems[0], e: React.MouseEvent) => {
     if (!item.isRouter) {
       e.preventDefault();
-      const el = document.querySelector(item.href);
-      el?.scrollIntoView({ behavior: 'smooth' });
+      if (item.href === '#contact') {
+        scrollToContact(navigate, location.pathname);
+      } else {
+        const el = document.querySelector(item.href);
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsMenuOpen(false);
   };

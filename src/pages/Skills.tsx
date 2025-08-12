@@ -259,7 +259,7 @@ export function Skills({ isDarkMode, onDialogStateChange }: SkillsProps) {
 
       {/* Bouton flottant pour ouvrir la sidebar sur mobile */}
       <button
-        className="fixed top-6 left-6 z-50 md:hidden w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg hover:bg-white/20 transition-all duration-300"
+        className="fixed bottom-6 left-6 z-50 md:hidden w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg hover:bg-white/20 transition-all duration-300"
         onClick={() => setIsSkillsSidebarOpen(true)}
         aria-label="Ouvrir le menu des compétences"
       >
