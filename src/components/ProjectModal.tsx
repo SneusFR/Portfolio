@@ -1,6 +1,35 @@
 import { useState, useEffect } from 'react';
 import type { Project } from '../data';
 
+// Import des images et vidéos pour le carrousel
+import tetrismin1 from '../assets/tetrismin1.png';
+import tetrismin2 from '../assets/tetrismin2.png';
+import tetrismin3 from '../assets/tetrismin3.png';
+import tetrismin4 from '../assets/tetrismin4.png';
+import tetrismin5 from '../assets/tetrismin5.mp4';
+
+import mailflowmin1 from '../assets/mailflowmin1.png';
+import mailflowmin2 from '../assets/mailflowmin2.png';
+import mailflowmin3 from '../assets/mailflowmin3.png';
+import mailflowmin4 from '../assets/mailflowmin4.png';
+import mailflowmin5 from '../assets/mailflowmin5.png';
+import mailflowmin6 from '../assets/mailflowmin6.png';
+import mailflowmin6Video from '../assets/mailflowmin6.mp4';
+
+import cafetmin1 from '../assets/cafetmin1.jpg';
+import cafetmin2 from '../assets/cafetmin2.jpg';
+import cafetmin3 from '../assets/cafetmin3.jpg';
+
+import rtbfmin1 from '../assets/rtbfmin1.jpg';
+import rtbfmin2 from '../assets/rtbfmin2.jpg';
+
+import kohlantamin1 from '../assets/kohlantamin1.png';
+import kohlantamin2 from '../assets/kohlantamin2.png';
+
+import tetris from '../assets/tetris.png';
+import mailflow from '../assets/MailFlow.png';
+import cafetmenu from '../assets/Cafetmenu.jpg';
+
 interface ProjectModalProps {
   project: Project & {
     category: string;
@@ -57,50 +86,50 @@ export function ProjectModal({ project, isOpen, onClose, isDarkMode }: ProjectMo
 
   const demoUrl = project.demoUrl || `https://demo-${project.name.toLowerCase().replace(/\s+/g, '-')}.vercel.app`;
 
-  // Images et médias du carrousel spécifiques à chaque projet
+  // Images et médias du carrousel spécifiques à chaque projet avec imports
   const getCarouselMedia = (projectName: string): Array<{src: string, type: 'image' | 'video'}> => {
     switch (projectName.toLowerCase()) {
       case 'tetris revolution':
         return [
-          { src: '/src/assets/tetrismin1.png', type: 'image' },
-          { src: '/src/assets/tetrismin2.png', type: 'image' },
-          { src: '/src/assets/tetrismin3.png', type: 'image' },
-          { src: '/src/assets/tetrismin4.png', type: 'image' },
-          { src: '/src/assets/tetrismin5.mp4', type: 'video' },
+          { src: tetrismin1, type: 'image' },
+          { src: tetrismin2, type: 'image' },
+          { src: tetrismin3, type: 'image' },
+          { src: tetrismin4, type: 'image' },
+          { src: tetrismin5, type: 'video' },
         ];
       case 'mailflow':
         return [
-          { src: '/src/assets/mailflowmin1.png', type: 'image' },
-          { src: '/src/assets/mailflowmin2.png', type: 'image' },
-          { src: '/src/assets/mailflowmin3.png', type: 'image' },
-          { src: '/src/assets/mailflowmin4.png', type: 'image' },
-          { src: '/src/assets/mailflowmin5.png', type: 'image' },
-          { src: '/src/assets/mailflowmin6.png', type: 'image' },
-          { src: '/src/assets/mailflowmin6.mp4', type: 'video' },
+          { src: mailflowmin1, type: 'image' },
+          { src: mailflowmin2, type: 'image' },
+          { src: mailflowmin3, type: 'image' },
+          { src: mailflowmin4, type: 'image' },
+          { src: mailflowmin5, type: 'image' },
+          { src: mailflowmin6, type: 'image' },
+          { src: mailflowmin6Video, type: 'video' },
         ];
       case 'isfce cafet':
         return [
-          { src: '/src/assets/cafetmin1.jpg', type: 'image' },
-          { src: '/src/assets/cafetmin2.jpg', type: 'image' },
-          { src: '/src/assets/cafetmin3.jpg', type: 'image' },
+          { src: cafetmin1, type: 'image' },
+          { src: cafetmin2, type: 'image' },
+          { src: cafetmin3, type: 'image' },
         ];
       case 'rtbf-copy':
         return [
-          { src: '/src/assets/rtbfmin1.jpg', type: 'image' },
-          { src: '/src/assets/rtbfmin2.jpg', type: 'image' },
+          { src: rtbfmin1, type: 'image' },
+          { src: rtbfmin2, type: 'image' },
         ];
       case 'koh lanta simulator':
         return [
-          { src: '/src/assets/kohlantamin1.png', type: 'image' },
-          { src: '/src/assets/kohlantamin2.png', type: 'image' },
+          { src: kohlantamin1, type: 'image' },
+          { src: kohlantamin2, type: 'image' },
         ];
       default:
         return [
-          { src: '/src/assets/tetris.png', type: 'image' },
-          { src: '/src/assets/MailFlow.png', type: 'image' },
-          { src: '/src/assets/Cafetmenu.jpg', type: 'image' },
-          { src: '/src/assets/tetris.png', type: 'image' },
-          { src: '/src/assets/MailFlow.png', type: 'image' },
+          { src: tetris, type: 'image' },
+          { src: mailflow, type: 'image' },
+          { src: cafetmenu, type: 'image' },
+          { src: tetris, type: 'image' },
+          { src: mailflow, type: 'image' },
         ];
     }
   };
