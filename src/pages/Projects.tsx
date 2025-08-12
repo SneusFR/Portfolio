@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { moons } from '../data';
 import { ProjectModal } from '../components/ProjectModal';
 
@@ -35,6 +36,8 @@ interface ProjectsProps {
 }
 
 export function Projects({ isDarkMode }: ProjectsProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
   // Récupérer tous les projets détaillés de toutes les lunes
   const allProjects = moons.flatMap(moon =>
     moon.detailedProjects.map(project => ({
@@ -151,6 +154,19 @@ export function Projects({ isDarkMode }: ProjectsProps) {
     if (description.length <= maxLength) return description;
     return description.substring(0, maxLength).trim() + '...';
   };
+
+  // Effect pour détecter le paramètre de l'URL et ouvrir la modale correspondante
+  useEffect(() => {
+    const projectName = searchParams.get('project');
+    if (projectName && !isModalOpen) {
+      const project = allProjects.find(p => p.name === decodeURIComponent(projectName));
+      if (project) {
+        openModal(project);
+        // Nettoyer l'URL après avoir ouvert la modale
+        setSearchParams({});
+      }
+    }
+  }, [searchParams, allProjects, isModalOpen]);
 
   // Effect pour le carrousel automatique - s'arrête quand la modale est ouverte
   useEffect(() => {

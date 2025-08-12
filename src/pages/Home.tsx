@@ -277,7 +277,7 @@ export function Home({ isDarkMode }: HomeProps) {
                     
                     {/* CTA */}
                     <Link
-                      to="/projects"
+                      to={`/projects?project=${encodeURIComponent(project.name)}`}
                       className="inline-flex items-center font-semibold transition-colors duration-300"
                       style={{ color: project.categoryColor }}
                     >
