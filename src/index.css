@@ -4638,3 +4638,24 @@ html:not(.dark) .glass-toggle-btn.active {
   color: #92400e;
   filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
 }
+
+.-translate-x-1\/2{ --tw-translate-x:-50%; }
+.-translate-y-1\/2{ --tw-translate-y:-50%; }
+
+/* --- 2) Utilitaires manquants (responsive + layout) --- */
+.justify-start { justify-content:flex-start; }
+
+@media (min-width:640px){
+  .sm\:hidden{ display:none !important; }
+  .sm\:block{ display:block !important; }
+  .sm\:inline-block{ display:inline-block !important; }
+}
+@media (min-width:768px){
+  .md\:hidden{ display:none !important; }
+  .md\:block{ display:block !important; }
+}
+@media (min-width:1024px){
+  .lg\:justify-start{ justify-content:flex-start !important; }
+}
+
+

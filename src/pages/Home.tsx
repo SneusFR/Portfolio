@@ -30,7 +30,7 @@ export function Home({ isDarkMode }: HomeProps) {
           {/* Contenu textuel - Style Pinia */}
           <div className="text-center lg:text-left">
             {/* Titre principal - Style Pinia */}
-            <h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight ${
+            <h1 className={`h1-fluid font-bold mb-6 leading-tight ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -54,7 +54,7 @@ export function Home({ isDarkMode }: HomeProps) {
             </p>
             
             {/* Boutons CTA - Style Pinia */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Link
                 to="/skills"
                 className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
@@ -76,7 +76,7 @@ export function Home({ isDarkMode }: HomeProps) {
             </div>
             
             {/* Liens supplémentaires - Style Pinia */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center text-sm">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center text-sm">
               <a
                 href="#about"
                 onClick={(e) => {

@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { 
   Code2,
   Database,
-  Globe,
-  Music
+  Globe
 } from 'lucide-react';
 import { moons } from '../data';
 
