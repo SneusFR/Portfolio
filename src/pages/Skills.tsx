@@ -1,5 +1,5 @@
 import { Canvas, useThree } from '@react-three/fiber';
-import { Suspense, useState, useRef, useCallback, useEffect } from 'react';
+import { Suspense, useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { CentralComputer } from '../components/CentralComputer';
 import { OrbitRings } from '../components/OrbitRings';
 import { ZoomControls } from '../components/ZoomControls';
@@ -47,6 +47,15 @@ export function Skills({ isDarkMode, onDialogStateChange }: SkillsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pinchRef = useRef<{ initialDistance: number; initialZoom: number } | null>(null);
   const zoomRef = useRef(zoom);
+  const lastTouchMoveTime = useRef(0);
+  const isMobile = useMemo(() => window.innerWidth < 768, []);
+  
+  // Frameloop plus intelligent sur mobile
+  const frameloop = useMemo(() => {
+    if (isSidebarOpen) return 'demand';
+    if (isMobile && zoom < 50) return 'demand'; // Arrêter l'animation quand on dézoome beaucoup sur mobile
+    return 'always';
+  }, [isSidebarOpen, isMobile, zoom]);
 
   const handleMoonSelect = useCallback((moon: Moon) => {
     setSelectedMoon(moon);
@@ -119,6 +128,14 @@ export function Skills({ isDarkMode, onDialogStateChange }: SkillsProps) {
   const handleTouchMove = useCallback((event: TouchEvent) => {
     if (event.touches.length === 2 && pinchRef.current) {
       event.preventDefault();
+      
+      // Throttling pour limiter les appels sur mobile
+      const now = Date.now();
+      if (now - lastTouchMoveTime.current < 16) { // ~60fps max
+        return;
+      }
+      lastTouchMoveTime.current = now;
+      
       const touch1 = event.touches[0];
       const touch2 = event.touches[1];
       const distance = Math.sqrt(
@@ -162,7 +179,7 @@ export function Skills({ isDarkMode, onDialogStateChange }: SkillsProps) {
       <Suspense fallback={<LoadingFallback />}>
         <Canvas
           ref={canvasRef}
-          frameloop={isSidebarOpen ? 'demand' : 'always'}
+          frameloop={frameloop}
           orthographic
           camera={{ 
             zoom: zoom, 
@@ -174,9 +191,11 @@ export function Skills({ isDarkMode, onDialogStateChange }: SkillsProps) {
           gl={{ 
             antialias: false,
             alpha: true,
-            powerPreference: "high-performance",
+            powerPreference: isMobile ? "default" : "high-performance",
             preserveDrawingBuffer: false,
-            failIfMajorPerformanceCaveat: false
+            failIfMajorPerformanceCaveat: false,
+            stencil: false,
+            depth: true
           }}
           onCreated={({ gl, scene, camera }) => {
             // Ajouter l'événement de molette pour le zoom
@@ -190,8 +209,15 @@ export function Skills({ isDarkMode, onDialogStateChange }: SkillsProps) {
             // Mettre à jour le zoom de la caméra
             camera.zoom = zoom;
             camera.updateProjectionMatrix();
-            // Limiter le framerate pour réduire la charge GPU
-            gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            
+            // Optimisations spécifiques pour mobile
+            if (isMobile) {
+              gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.2)); // Plus conservateur sur mobile
+              // Réduire la précision sur mobile
+              gl.getContext().getExtension('OES_standard_derivatives');
+            } else {
+              gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            }
             
             // Gérer la perte de contexte WebGL
             gl.domElement.addEventListener('webglcontextlost', (e) => {
