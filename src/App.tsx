@@ -29,7 +29,12 @@ function BodyClassManager() {
 }
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Initialiser le mode sombre par défaut, ou utiliser la préférence sauvegardée
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('darkMode');
+    // Si aucune préférence n'est sauvegardée, utiliser le mode sombre par défaut
+    return savedTheme ? JSON.parse(savedTheme) : true;
+  });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   // Gérer l'application de la classe dark sur le document
@@ -68,14 +73,7 @@ function App() {
     };
   }, []);
 
-  // Sauvegarder la préférence dans localStorage
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme) {
-      setIsDarkMode(JSON.parse(savedTheme));
-    }
-  }, []);
-
+  // Sauvegarder la préférence dans localStorage à chaque changement
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);

@@ -438,32 +438,6 @@ export const moons: Moon[] = [
     skills: ["SQLite", "SQL", "Database Design", "Mobile Development", "Embedded Systems", "Performance"],
     experience: "4 ans",
     icon: sqliteUrl
-  },
-  {
-    id: "koh-lanta",
-    label: "Koh Lanta",
-    ring: "frontend",
-    angle0: 0,
-    color: "#4ade80",
-    description: "Projet de simulation d'événements et dynamiques d'une saison de Koh-Lanta.",
-    projects: [],
-    detailedProjects: [
-      {
-        name: "Koh Lanta simulator",
-        description: "Koh lanta simulator est un projet d'application web Vue.js qui simule les événements et dynamiques d'une saison de Koh-Lanta avec deux équipes (bleue et rouge) de 4 candidats chacune. L'application génère aléatoirement des événements comme des disputes, formations d'alliances, et situations narratives, tout en gérant les statistiques des participants (social, divertissement, survie, stratégie, comportement, sport) et en permettant de suivre l'évolution des alliances et leur solidité au fil du temps.",
-        githubUrl: "https://github.com/SneusFR/koh-lanta-simulator",
-        technologies: ["Vue.js", "Pinia", "Vuetify"],
-        technicalSpecs: {
-          architecture: "Architecture Vue.js 3 avec Composition API et gestion d'état centralisée via Pinia",
-          performance: "Interface réactive optimisée avec Vuetify et génération d'événements en temps réel",
-          security: "Validation des données côté client et gestion sécurisée des états de jeu",
-          scalability: "Architecture modulaire permettant l'ajout de nouvelles mécaniques de jeu et événements"
-        }
-      }
-    ],
-    skills: ["Vue.js", "Pinia", "Vuetify", "Game Logic", "Event System"],
-    experience: "1 projet",
-    icon: vuejsUrl
   }
 ];
 
