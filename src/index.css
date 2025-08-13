@@ -2265,11 +2265,11 @@ body.skills-page {
   line-height: 1.1; 
 }
 
-/* Version mobile plus petite pour éviter les débordements */
+/* Version mobile plus grande pour "Mes Projets" */
 @media (max-width: 767px) {
   .h1-fluid { 
-    font-size: clamp(1.5rem, 6vw, 2.5rem); 
-    line-height: 1.2; 
+    font-size: clamp(2.5rem, 10vw, 3.5rem); 
+    line-height: 1.1; 
   }
 }
 
@@ -4828,3 +4828,132 @@ html:not(.dark) .glass-toggle-btn.active {
 }
 
 /* Cette section est maintenant gérée par la version robuste plus haut */
+
+/* ====== STYLES POUR LES BOUTONS LIQUIDES AVEC VARIABLES CSS ====== */
+
+/* Base commune au <a> et <button> - Normalisation complète */
+.liquid-button {
+  position: relative;
+  display: inline-flex;           /* évite le inline des <a> */
+  align-items: center;
+  justify-content: center;
+  padding: 20px 50px;
+  border-radius: 40px;
+  overflow: hidden;               /* indispensable pour "clipper" la vague */
+  isolation: isolate;             /* contexte de stacking pour z-index */
+  line-height: 1;                 /* neutralise le line-height UA */
+  text-decoration: none;          /* pour le <a> */
+  border: 0;                      /* pour le <button> */
+  background: transparent;        /* si tu gères le fond ailleurs */
+  -webkit-appearance: none;       /* resets */
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  width: auto;
+  min-width: 200px;
+  font-family: 'Inter', sans-serif;
+}
+
+.liquid-button > span {
+  position: relative;
+  z-index: 2;                     /* texte au-dessus des vagues */
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+
+.liquid-button .liquid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--liq-h, 200px);
+  top: var(--liq-top, -80px);
+  background: #4973ff;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+  transition: .5s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.liquid-button .liquid::after,
+.liquid-button .liquid::before {
+  content: '';
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
+}
+
+.liquid-button .liquid::before {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  animation: animate 5s linear infinite;
+}
+
+.liquid-button .liquid::after {
+  border-radius: 40%;
+  background: rgba(20, 20, 20, .5);
+  animation: animate 10s linear infinite;
+}
+
+/* IMPORTANT : l'animation hover doit rester relative */
+.liquid-button:hover .liquid {
+  top: calc(var(--liq-top, -80px) - 40px);
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+/* Variante pour le bouton de contact - gradient violet-rose */
+.liquid-button.contact .liquid {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+/* ====== VARIABLES CSS PAR BREAKPOINT ====== */
+
+/* Par défaut (mobile) */
+.liquid-button { 
+  --liq-h: 220px; 
+  --liq-top: -90px; 
+}
+
+/* ≥ 640px (tablette) */
+@media (min-width: 640px) {
+  .liquid-button { 
+    --liq-h: 260px; 
+    --liq-top: -105px; 
+  }
+}
+
+/* ≥ 1024px (desktop) */
+@media (min-width: 1024px) {
+  .liquid-button { 
+    --liq-h: 300px; 
+    --liq-top: -120px; 
+  }
+}
+
+/* Responsive pour le padding et texte */
+@media (max-width: 640px) {
+  .liquid-button {
+    padding: 16px 32px;
+    min-width: 160px;
+  }
+  
+  .liquid-button span {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}

@@ -80,25 +80,22 @@ export function Home({ isDarkMode }: HomeProps) {
               Transformons vos idées en expériences digitales inoubliables.
             </p>
             
-            {/* Boutons CTA - Style Pinia */}
+            {/* Boutons CTA - Style Liquide */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Link
                 to="/skills"
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
+                className="liquid-button"
               >
-                <span className="relative z-10">Découvrir mes compétences</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span>compétences</span>
+                <div className="liquid"></div>
               </Link>
               
               <button
                 onClick={() => handleScrollToSection('contact')}
-                className={`px-8 py-4 font-semibold rounded-full border-2 transition-all duration-300 hover:scale-105 ${
-                  isDarkMode
-                    ? 'bg-gray-800/80 border-gray-600 text-gray-100 hover:bg-gray-700 hover:border-gray-400 hover:text-gray-50'
-                    : 'border-gray-300 text-gray-700 hover:border-gray-500 hover:text-gray-900 hover:bg-white/50'
-                }`}
+                className="liquid-button contact"
               >
-                Me contacter
+                <span>Me contacter</span>
+                <div className="liquid"></div>
               </button>
             </div>
             
