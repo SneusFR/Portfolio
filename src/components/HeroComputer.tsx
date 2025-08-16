@@ -1,6 +1,6 @@
 import { useRef, Suspense, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, useAnimations, Environment, Float } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { useGLTF, useAnimations, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface BeardedModelProps {
@@ -12,64 +12,59 @@ function BeardedModel({ isDarkMode }: BeardedModelProps) {
   const { scene, animations } = useGLTF('/beared.glb');
   const { actions } = useAnimations(animations, meshRef);
   
-  // Démarrer l'animation idle en boucle
+  // Jouer l'animation Animation_Hello en boucle infinie
   useEffect(() => {
-    if (actions.idle) {
-      actions.idle.reset().fadeIn(0.5).play();
+    if (actions.Animation_Hello) {
+      console.log('✅ Lancement de Animation_Hello en boucle');
+      actions.Animation_Hello.reset().play();
+      actions.Animation_Hello.setLoop(THREE.LoopRepeat, Infinity);
+    } else if (actions.idle) {
+      // Fallback si Animation_Hello n'existe pas
+      console.log('⚠️ Animation_Hello non trouvée, utilisation de idle');
+      actions.idle.reset().play();
       actions.idle.setLoop(THREE.LoopRepeat, Infinity);
     }
     
     return () => {
+      if (actions.Animation_Hello) {
+        actions.Animation_Hello.stop();
+      }
       if (actions.idle) {
-        actions.idle.fadeOut(0.5);
+        actions.idle.stop();
       }
     };
   }, [actions]);
 
-  // Animation subtile de rotation
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Rotation lente et continue
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-    }
-  });
-
   return (
-    <Float
-      speed={1.2}
-      rotationIntensity={0.2}
-      floatIntensity={0.15}
-    >
-      <group ref={meshRef} scale={[4, 4, 4]} position={[-2, -4, -12]}>
-        <primitive object={scene} />
-        
-        {/* Éclairage principal */}
-        <directionalLight
-          position={[5, 5, 5]}
-          intensity={isDarkMode ? 0.8 : 0.6}
-          color={isDarkMode ? "#ffffff" : "#f0f0f0"}
-          castShadow
-        />
-        
-        {/* Éclairage d'appoint coloré pour l'effet glow */}
-        <pointLight
-          position={[-3, 2, 3]}
-          intensity={0.5}
-          color={isDarkMode ? "#3b82f6" : "#6366f1"}
-          distance={10}
-        />
-        
-        <pointLight
-          position={[3, -2, -3]}
-          intensity={0.3}
-          color={isDarkMode ? "#8b5cf6" : "#a855f7"}
-          distance={8}
-        />
-        
-        {/* Lumière ambiante */}
-        <ambientLight intensity={isDarkMode ? 0.3 : 0.4} />
-      </group>
-    </Float>
+    <group ref={meshRef} scale={[4, 4, 4]} position={[-1, -4, -10]}>
+      <primitive object={scene} />
+      
+      {/* Éclairage principal */}
+      <directionalLight
+        position={[5, 5, 5]}
+        intensity={isDarkMode ? 0.8 : 0.6}
+        color={isDarkMode ? "#ffffff" : "#f0f0f0"}
+        castShadow
+      />
+      
+      {/* Éclairage d'appoint coloré pour l'effet glow */}
+      <pointLight
+        position={[-3, 2, 3]}
+        intensity={0.5}
+        color={isDarkMode ? "#3b82f6" : "#6366f1"}
+        distance={10}
+      />
+      
+      <pointLight
+        position={[3, -2, -3]}
+        intensity={0.3}
+        color={isDarkMode ? "#8b5cf6" : "#a855f7"}
+        distance={8}
+      />
+      
+      {/* Lumière ambiante */}
+      <ambientLight intensity={isDarkMode ? 0.3 : 0.4} />
+    </group>
   );
 }
 
